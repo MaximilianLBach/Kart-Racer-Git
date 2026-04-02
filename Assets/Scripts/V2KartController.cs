@@ -10,6 +10,13 @@ public class V2KartController : MonoBehaviour
 
     public float alignSpeed = 10f;
 
+    [Header("Drift & Boost")]
+    public bool isDrifting;
+    private int driftDirection;
+    private float driftPower;
+    private float currentBoost;
+    public float boostDecayRate = 20f; // How fast the boost fades away
+
     public float airDrag;
     public float groundDrag;
     public float fwdSpeed;
@@ -30,16 +37,62 @@ public class V2KartController : MonoBehaviour
         moveInput = Input.GetAxisRaw("Vertical");
         turnInput = Input.GetAxisRaw("Horizontal");
 
-        //adjust speed for car
-        //adjust speed for car
+        //Decay the boost over time
+        if (currentBoost > 0)
+        {
+            currentBoost -= Time.deltaTime * boostDecayRate;
+            if (currentBoost < 0) currentBoost = 0;
+        }
 
+        //Start Drifting if we press Space (Jump), are grounded, moving forward, and turning
+        if (Input.GetButtonDown("Jump") && isCarGrounded && turnInput != 0 && moveInput > 0 && !isDrifting)
+        {
+            isDrifting = true;
+            driftDirection = turnInput > 0 ? 1 : -1; // 1 for right, -1 for left
+            driftPower = 0f;
+        }
+
+        float actualTurnSpeed = 0f;
+
+        if (isDrifting)
+        {
+            // Accumulate drift power (fill faster if turning INTO the drift)
+            float powerMultiplier = (turnInput == driftDirection) ? 1.5f : 0.5f;
+            driftPower += Time.deltaTime * 100f * powerMultiplier;
+
+            // Steering controls how tight/wide the drift is, rather than turning normally
+            float driftControl = 1f + (turnInput * driftDirection * 0.5f); 
+            actualTurnSpeed = driftDirection * turnSpeed * driftControl;
+
+            // Release Drift & Apply Boost
+            if (Input.GetButtonUp("Jump"))
+            {
+                isDrifting = false;
+                
+                // Tiers of boost based on how long you drifted
+                if (driftPower > 150f) currentBoost = 40f;      // Tier 3
+                else if (driftPower > 100f) currentBoost = 25f; // Tier 2
+                else if (driftPower > 50f) currentBoost = 15f;  // Tier 1
+                
+                driftPower = 0f;
+            }
+        }
+        else
+        {
+            // Normal Steering
+            actualTurnSpeed = turnInput * turnSpeed;
+        }
+
+        //adjust speed for car
         moveInput *= moveInput > 0 ? fwdSpeed : revSpeed;
+
+        moveInput += currentBoost;
 
         //set cars position to sphere
         transform.position = sphereRB.transform.position;
 
         //set cars rotation
-        float newRotation = turnInput * turnSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
+        float newRotation = actualTurnSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
         transform.Rotate(0, newRotation, 0, Space.World);
 
         //Raycast GroundCheck
@@ -77,6 +130,23 @@ public class V2KartController : MonoBehaviour
         }
 
         
+    }
+
+    private void OnGUI()
+    {
+        // Make the text a bit bigger and easier to read
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 24;
+        style.normal.textColor = Color.white;
+
+        // Calculate actual physical speed (how fast the sphere is moving)
+        float currentSpeed = sphereRB.linearVelocity.magnitude;
+
+        // Draw the text on the screen (x, y, width, height)
+        GUI.Label(new Rect(20, 20, 300, 40), "Speed: " + Mathf.RoundToInt(currentSpeed), style);
+        
+        // Draw the current boost power right below it
+        GUI.Label(new Rect(20, 60, 300, 40), "Boost Reserve: " + Mathf.RoundToInt(currentBoost), style);
     }
     
 }
