@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KartControllerV2 : MonoBehaviour
+public class V2KartController : MonoBehaviour
 {
     private float moveInput;
     private float turnInput;
