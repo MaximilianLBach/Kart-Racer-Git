@@ -1,0 +1,1223 @@
+# Blender MTL File: 'None'
+# Material Count: 111
+
+newmtl Flag_Triangle1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd FlagTriangle1_Alb.png
+map_d FlagTriangle1_Alb.png
+
+newmtl PanelFlame1
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd PanelFlame_Alb.png
+map_d PanelFlame_Alb.png
+
+newmtl Sm_Gate_M
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd smMgate_Alb.png
+map_d smMgate_Alb.png
+
+newmtl TreeSnow_Bark
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd TreeSnow_Bark_Alb.png
+map_d TreeSnow_Bark_Alb.png
+
+newmtl TreeSnow_Leaf
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd TreeSnow_Leaf_Alb.png
+map_d TreeSnow_Leaf_Alb.png
+
+newmtl ef_dashboard
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd ef_dashboard02_Alb.png
+map_d ef_dashboard02_Alb.png
+
+newmtl ef_glideboard
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd ef_glideboard02_Alb.png
+map_d ef_glideboard02_Alb.png
+
+newmtl ef_gravityboard
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd ef_GravityPanell_Alb2.png
+map_d ef_GravityPanell_Alb2.png
+
+newmtl ef_river01F
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd ef_river_Alb.png
+map_d ef_river_Alb.png
+
+newmtl ef_water02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd ef_water02_Alb.png
+map_d ef_water02_Alb.png
+
+newmtl ef_water02_dam
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd ef_water02_Alb.png
+map_d ef_water02_Alb.png
+
+newmtl ef_waterfall06_SnowMountain
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd ef_waterfall06_SnowMountain_Alb.png
+map_d ef_waterfall06_SnowMountain_Alb.png
+
+newmtl m_SmBalloon
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd SmBalloon_Alb.png
+map_d SmBalloon_Alb.png
+
+newmtl m_SmLight
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd SmLight_Alb.png
+map_d SmLight_Alb.png
+
+newmtl m_Tent
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_Tent01_Alb.png
+map_d sn_Tent01_Alb.png
+
+newmtl otsuka_working_ws_NSE_TV00
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd Screen_Dummy.png
+map_d Screen_Dummy.png
+
+newmtl sl_SnowCoverDown
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_SnowCoverDOWN01_Alb.png
+map_d sn_SnowCoverDOWN01_Alb.png
+
+newmtl sn_CAVE_holeRoad02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_holeRoad02_Alb.png
+map_d sn_holeRoad02_Alb.png
+
+newmtl sn_Cave_PanelFlame
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd PanelFlame_Alb.png
+map_d PanelFlame_Alb.png
+
+newmtl sn_Cave_fence
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd ukc_fence_Alb.png
+map_d ukc_fence_Alb.png
+
+newmtl sn_Cave_ice
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_ice01_road_Alb.png
+map_d sn_ice01_road_Alb.png
+
+newmtl sn_Cave_ice2
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_cave_river_road_Alb.png
+map_d sn_cave_river_road_Alb.png
+
+newmtl sn_Cave_ice_WhiteTrail
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_ice01_road_Alb.png
+map_d sn_ice01_road_Alb.png
+
+newmtl sn_Cave_jumpIce01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_jumpSnow01_Alb.png
+map_d sn_jumpSnow01_Alb.png
+
+newmtl sn_Cave_light01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_Cavelight01_Alb.png
+map_d sn_Cavelight01_Alb.png
+
+newmtl sn_Cave_rock01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rock02_Alb.png
+map_d sn_rock02_Alb.png
+
+newmtl sn_Cave_rock01_Yfog
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rock02_Alb.png
+map_d sn_rock02_Alb.png
+
+newmtl sn_Cave_rock01_ref
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rock02_Emm.png
+map_d sn_rock02_Emm.png
+
+newmtl sn_Cave_rock03
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rock03_Alb.png
+map_d sn_rock03_Alb.png
+
+newmtl sn_Cave_rock04
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rock04_Alb.png
+map_d sn_rock04_Alb.png
+
+newmtl sn_Cave_rockSnow01_near
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rockSnow01_Alb.png
+map_d sn_rockSnow01_Alb.png
+
+newmtl sn_Cave_snowroadHandRail
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snowroadHandRail01_Alb.png
+map_d sn_snowroadHandRail01_Alb.png
+
+newmtl sn_DamInner_Wall01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_damWall03_Alb.png
+map_d sn_damWall03_Alb.png
+
+newmtl sn_DamInner_Wall01_Dam
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_damWall03_Alb.png
+map_d sn_damWall03_Alb.png
+
+newmtl sn_DamInner_holeRoad02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_holeRoad02_Alb.png
+map_d sn_holeRoad02_Alb.png
+
+newmtl sn_DamInner_metalWall01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_metalWall01_Alb.png
+map_d sn_metalWall01_Alb.png
+
+newmtl sn_DamMetal
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_DamMetal_Alb.png
+map_d sn_DamMetal_Alb.png
+
+newmtl sn_DamMetal_01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_DamMetal_01_Alb.png
+map_d sn_DamMetal_01_Alb.png
+
+newmtl sn_DamMetal_01_Dam
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_DamMetal_01_Alb.png
+map_d sn_DamMetal_01_Alb.png
+
+newmtl sn_EmmisionColor
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_EmmisionColor_Alb.png
+map_d sn_EmmisionColor_Alb.png
+
+newmtl sn_EmmisionColor_LargeHill
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_EmmisionColor_Alb.png
+map_d sn_EmmisionColor_Alb.png
+
+newmtl sn_GoalLine
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_GoalLine_Alb.png
+map_d sn_GoalLine_Alb.png
+
+newmtl sn_Ladder
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_Ladder_Alb.png
+map_d sn_Ladder_Alb.png
+
+newmtl sn_NS2_Gallery_00
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd dsws_ry_Gallery_00_Alb.0.png
+map_d dsws_ry_Gallery_00_Alb.0.png
+
+newmtl sn_RoadSideStake
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_RoadSideStake_Alb.png
+map_d sn_RoadSideStake_Alb.png
+
+newmtl sn_UniteAbe01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_UniteAbe01_Alb.png
+map_d sn_UniteAbe01_Alb.png
+
+newmtl sn_concrete01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_concrete01_Alb.png
+map_d sn_concrete01_Alb.png
+
+newmtl sn_concrete02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_concrete02_Alb.png
+map_d sn_concrete02_Alb.png
+
+newmtl sn_concrete03
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_concrete03_Alb.png
+map_d sn_concrete03_Alb.png
+
+newmtl sn_concreteBench01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_concreteBench01_Alb.png
+map_d sn_concreteBench01_Alb.png
+
+newmtl sn_concreteTower
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_concreteTower01_Alb.png
+map_d sn_concreteTower01_Alb.png
+
+newmtl sn_damLogo01_Dam
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_damLogo01_Alb.png
+map_d sn_damLogo01_Alb.png
+
+newmtl sn_damRoad01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_damRoad01_Alb.png
+map_d sn_damRoad01_Alb.png
+
+newmtl sn_damRoad01_damLogo
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_damRoad01_Alb.png
+map_d sn_damRoad01_Alb.png
+
+newmtl sn_damWall01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_damWall01_Alb.png
+map_d sn_damWall01_Alb.png
+
+newmtl sn_damWall01_damLogo
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_damWall01_Alb.png
+map_d sn_damWall01_Alb.png
+
+newmtl sn_damWall02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_damWall02_Alb.png
+map_d sn_damWall02_Alb.png
+
+newmtl sn_depthshadow
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_depthshadow_Alb.png
+map_d sn_depthshadow_Alb.png
+
+newmtl sn_holeRoad02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_holeRoad02_Alb.png
+map_d sn_holeRoad02_Alb.png
+
+newmtl sn_hwood02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_hwood02_Alb.png
+map_d sn_hwood02_Alb.png
+
+newmtl sn_ice01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_ice01_road_Alb.png
+map_d sn_ice01_road_Alb.png
+
+newmtl sn_iceSnow01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_ice01_road_Alb.png
+map_d sn_ice01_road_Alb.png
+
+newmtl sn_jumpSnow01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_jumpSnow01_Alb.png
+map_d sn_jumpSnow01_Alb.png
+
+newmtl sn_jumpSnow01_Dam
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_jumpSnow01_Alb.png
+map_d sn_jumpSnow01_Alb.png
+
+newmtl sn_metalPillar02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_metalPillar02_Alb.png
+map_d sn_metalPillar02_Alb.png
+
+newmtl sn_metalWall01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_metalWall01_Alb.png
+map_d sn_metalWall01_Alb.png
+
+newmtl sn_mountain01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_moutain01_Alb.png
+map_d sn_moutain01_Alb.png
+
+newmtl sn_mountain03
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_mountain02_Alb.png
+map_d sn_mountain02_Alb.png
+
+newmtl sn_mountain_Top
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_mountain_Top_Alb.png
+map_d sn_mountain_Top_Alb.png
+
+newmtl sn_ref01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_ref01_Alb.png
+map_d sn_ref01_Alb.png
+
+newmtl sn_roadframe
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_roadframe_Alb.png
+map_d sn_roadframe_Alb.png
+
+newmtl sn_rockSnow02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rockSnow02_Alb.png
+map_d sn_rockSnow02_Alb.png
+
+newmtl sn_rockSnow02_depthOUT
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rockSnow02_Alb.png
+map_d sn_rockSnow02_Alb.png
+
+newmtl sn_rockWall03
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_rockWall03_Alb.png
+map_d sn_rockWall03_Alb.png
+
+newmtl sn_signboard
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_signboard_Alb.png
+map_d sn_signboard_Alb.png
+
+newmtl sn_signboard_Alpha
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_signboard_Alpha_Alb.png
+map_d sn_signboard_Alpha_Alb.png
+
+newmtl sn_signboard_Touka
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_signboard_Touka_Alb.png
+map_d sn_signboard_Touka_Alb.png
+
+newmtl sn_signboard_near04
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_signboard_near04_Alb.png
+map_d sn_signboard_near04_Alb.png
+
+newmtl sn_snow01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snow01_Alb.png
+map_d sn_snow01_Alb.png
+
+newmtl sn_snow05
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snow05_Alb.png
+map_d sn_snow05_Alb.png
+
+newmtl sn_snowConnect01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snowConnect01_Alb.png
+map_d sn_snowConnect01_Alb.png
+
+newmtl sn_snowRoof01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snowRoof01_Alb.png
+map_d sn_snowRoof01_Alb.png
+
+newmtl sn_snowRoof01_DIRT
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snowRoof01_Alb.png
+map_d sn_snowRoof01_Alb.png
+
+newmtl sn_snowRoof01_Top
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snowRoof01_Alb.png
+map_d sn_snowRoof01_Alb.png
+
+newmtl sn_snowRoof01_depthOUT
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snowRoof01_Alb.png
+map_d sn_snowRoof01_Alb.png
+
+newmtl sn_snow_largeHill
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snow01_Alb.png
+map_d sn_snow01_Alb.png
+
+newmtl sn_snowroad04s
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd mm_grass3_Nrm.png
+map_d mm_grass3_Nrm.png
+
+newmtl sn_snowroad05
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snowroad05_Alb.png
+map_d sn_snowroad05_Alb.png
+
+newmtl sn_snowroad_Ktens
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_snowroad_Kten_Alb.png
+map_d sn_snowroad_Kten_Alb.png
+
+newmtl sn_standSide01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_standSide01_Alb.png
+map_d sn_standSide01_Alb.png
+
+newmtl sn_tr_MetalParts01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tr_MetalParts01_Alb.png
+map_d sn_tr_MetalParts01_Alb.png
+
+newmtl sn_tr_MetalParts01_Dam
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tr_MetalParts01_Alb.png
+map_d sn_tr_MetalParts01_Alb.png
+
+newmtl sn_tr_damConcSet01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tr_damConcSet01_Alb.png
+map_d sn_tr_damConcSet01_Alb.png
+
+newmtl sn_tr_damConcSet01_Dam
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tr_damConcSet01_Alb.png
+map_d sn_tr_damConcSet01_Alb.png
+
+newmtl sn_tr_pipe01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tr_pipe01_Alb.png
+map_d sn_tr_pipe01_Alb.png
+
+newmtl sn_tr_pipe01_Dam
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tr_pipe01_Alb.png
+map_d sn_tr_pipe01_Alb.png
+
+newmtl sn_trusMetal01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_trusMetal01_Alb.png
+map_d sn_trusMetal01_Alb.png
+
+newmtl sn_trusMetal01_noAlpha
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_trusMetal01_noAlpha_Alb.png
+map_d sn_trusMetal01_noAlpha_Alb.png
+
+newmtl sn_trusMetal03_noAlpha
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_trusMetal03_noAlpha_Alb.png
+map_d sn_trusMetal03_noAlpha_Alb.png
+
+newmtl sn_tunnelDoor01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tunnelDoor01_Alb.png
+map_d sn_tunnelDoor01_Alb.png
+
+newmtl sn_tunnelLight01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tunnelLight01_Alb.png
+map_d sn_tunnelLight01_Alb.png
+
+newmtl sn_tunnelWall01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tunnelWall01_Alb.png
+map_d sn_tunnelWall01_Alb.png
+
+newmtl sn_tunnelWall02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tunnelWall02_Alb.png
+map_d sn_tunnelWall02_Alb.png
+
+newmtl sn_tunnelWall03
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tunnelWall03_Alb.png
+map_d sn_tunnelWall03_Alb.png
+
+newmtl sn_tunnelWall04
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_tunnelWall04_Alb.png
+map_d sn_tunnelWall04_Alb.png
+
+newmtl sn_wallTile01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_wallTile01_Alb.png
+map_d sn_wallTile01_Alb.png
+
+newmtl sn_wallTile02
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_wallTile02_Alb.png
+map_d sn_wallTile02_Alb.png
+
+newmtl sn_warioSnowResort_Logo01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_warioSnowResort_Logo01_Alb.png
+map_d sn_warioSnowResort_Logo01_Alb.png
+
+newmtl sn_window03
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_window03_Alb.png
+map_d sn_window03_Alb.png
+
+newmtl sn_woodRoad01
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd sn_woodRoad01_Alb.png
+map_d sn_woodRoad01_Alb.png
+
+newmtl ws_NS_ESboard00
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni -1.000000
+d 0.000000
+illum 1
+map_Kd dsws_ry_ESboard00_Alb.png
+map_d dsws_ry_ESboard00_Alb.png
