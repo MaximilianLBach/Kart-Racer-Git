@@ -12,6 +12,8 @@ public class V2KartController : MonoBehaviour
 
     [Header("Drift & Boost")]
     public bool isDrifting;
+    public float baseDriftTurnSpeed = 40f; 
+    public float driftControlMultiplier = 20f;
     private int driftDirection;
     private float driftPower;
     private float currentBoost;
@@ -74,8 +76,13 @@ public class V2KartController : MonoBehaviour
             driftPower += Time.deltaTime * 100f * powerMultiplier;
 
             // Steering controls how tight/wide the drift is, rather than turning normally
-            float driftControl = 1f + (turnInput * driftDirection * 0.5f); 
-            actualTurnSpeed = driftDirection * turnSpeed * driftControl;
+            float baseTurn = driftDirection * baseDriftTurnSpeed;
+
+            // 2. Add or subtract from that turn speed based on the player's steering
+            float playerControl = turnInput * driftControlMultiplier;
+
+            // 3. Combine them for the final drift rotation speed
+            actualTurnSpeed = baseTurn + playerControl;
 
             // Release Drift & Apply Boost
             if (Input.GetButtonUp("Jump"))

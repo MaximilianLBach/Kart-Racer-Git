@@ -280,6 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::V2KartController
   alignSpeed: 10
   isDrifting: 0
+  baseDriftTurnSpeed: 40
+  driftControlMultiplier: 100
   boostDecayRate: 20
   kartBody: {fileID: 1524306901}
   frontLeftWheel: {fileID: 1052611827610706331}
