@@ -261,9 +261,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8523505913224329788}
   - {fileID: 2053632053}
   - {fileID: 2123897221}
+  - {fileID: 1524306901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &79194748
@@ -281,6 +281,14 @@ MonoBehaviour:
   alignSpeed: 10
   isDrifting: 0
   boostDecayRate: 20
+  kartBody: {fileID: 1524306901}
+  frontLeftWheel: {fileID: 1052611827610706331}
+  frontRightWheel: {fileID: 7366626577920351067}
+  backLeftWheel: {fileID: 7543748772706098349}
+  backRightWheel: {fileID: 6408169535985685049}
+  steeringWheel: {fileID: 4341393588962549295}
+  wheelSpinSpeed: 50
+  maxSteerAngle: 30
   airDrag: 0.1
   groundDrag: 4
   fwdSpeed: 200
@@ -1118,6 +1126,38 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1524306900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1524306901}
+  m_Layer: 0
+  m_Name: KartBodyWrapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1524306901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524306900}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8523505913224329788}
+  m_Father: {fileID: 79194747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1552068836
 GameObject:
@@ -2437,8 +2477,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8773734859730077817}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0066565215, y: -0.005692156, z: 0.0016505262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.006656521, y: -0.005692156, z: 0.0016505262}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2468,7 +2508,7 @@ Transform:
   m_GameObject: {fileID: 9007836814385160326}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2477,7 +2517,7 @@ Transform:
   - {fileID: 1052611827610706331}
   - {fileID: 7366626577920351067}
   - {fileID: 4341393588962549295}
-  m_Father: {fileID: 79194747}
+  m_Father: {fileID: 1524306901}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!1 &8773734859730077817
 GameObject:

@@ -17,6 +17,19 @@ public class V2KartController : MonoBehaviour
     private float currentBoost;
     public float boostDecayRate = 20f; // How fast the boost fades away
 
+
+    [Header("Visuals & Animations")]
+    public Transform kartBody;      
+    public Transform frontLeftWheel;   
+    public Transform frontRightWheel;
+    public Transform backLeftWheel;
+    public Transform backRightWheel;
+    public Transform steeringWheel;
+
+    public float wheelSpinSpeed = 50f;
+    public float maxSteerAngle = 30f;
+    private float currentWheelSpin;
+
     public float airDrag;
     public float groundDrag;
     public float fwdSpeed;
@@ -116,6 +129,8 @@ public class V2KartController : MonoBehaviour
             Quaternion levelRotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, levelRotation, Time.deltaTime * alignSpeed * 0.5f);
         }
+
+        AnimateVisuals();
     }
 
     private void FixedUpdate()
@@ -147,6 +162,54 @@ public class V2KartController : MonoBehaviour
         
         // Draw the current boost power right below it
         GUI.Label(new Rect(20, 60, 300, 40), "Boost Reserve: " + Mathf.RoundToInt(currentBoost), style);
+    }
+
+    private void AnimateVisuals()
+    {
+        // 1. Calculate how fast the car is physically rolling forward/backward
+        float forwardSpeed = Vector3.Dot(sphereRB.linearVelocity, transform.forward);
+        currentWheelSpin += forwardSpeed * wheelSpinSpeed * Time.deltaTime;
+
+        // 2. Tire Spinning & Steering
+        // Create the two rotations independently
+        Quaternion steerRot = Quaternion.Euler(0, 0, turnInput * maxSteerAngle); // Z-axis steering
+        Quaternion spinRot = Quaternion.Euler(0, currentWheelSpin, 0);           // Y-axis spinning
+
+        // Multiply them together to combine them without wobble (Order matters!)
+        if (frontLeftWheel != null) 
+            frontLeftWheel.localRotation = steerRot * spinRot;
+            
+        if (frontRightWheel != null) 
+            frontRightWheel.localRotation = steerRot * spinRot;
+
+        // Back wheels just get the spin rotation
+        if (backLeftWheel != null) 
+            backLeftWheel.localRotation = spinRot;
+            
+        if (backRightWheel != null) 
+            backRightWheel.localRotation = spinRot;
+
+        // 3. Steering Wheel Turning
+        if (steeringWheel != null)
+        {
+            steeringWheel.localEulerAngles = new Vector3(-25, 90, turnInput * -45f);
+        }
+
+        // 4. Kart Leaning & Drift Crab-Walking
+        if (kartBody != null)
+        {
+            float targetLean = turnInput * -5f; // Slight lean away from the turn during normal driving
+            float targetYOffset = 0f;
+
+            if (isDrifting)
+            {
+                targetYOffset = driftDirection * 25f;
+                targetLean = driftDirection * -15f; 
+            }
+
+            Quaternion targetBodyRotation = Quaternion.Euler(0, targetYOffset, targetLean);
+            kartBody.localRotation = Quaternion.Slerp(kartBody.localRotation, targetBodyRotation, Time.deltaTime * 8f);
+        }
     }
     
 }
