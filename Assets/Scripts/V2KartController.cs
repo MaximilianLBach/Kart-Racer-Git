@@ -9,6 +9,7 @@ public class V2KartController : MonoBehaviour
     
 
     public float alignSpeed = 10f;
+    public float airAlignSpeed = 1f;
 
     [Header("Drift & Boost")]
     public bool isDrifting;
@@ -134,7 +135,7 @@ public class V2KartController : MonoBehaviour
 
             // level out car when in the air
             Quaternion levelRotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, levelRotation, Time.deltaTime * alignSpeed * 0.5f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, levelRotation, Time.deltaTime * airAlignSpeed * 0.5f);
         }
 
         AnimateVisuals();
