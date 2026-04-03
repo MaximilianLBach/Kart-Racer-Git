@@ -1,0 +1,135 @@
+{
+    "version": 1,
+    "name": "Kart Controls",
+    "maps": [
+        {
+            "name": "Move",
+            "id": "7a72338a-f8be-45fb-abaf-bf41f984d589",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "12d31481-7a4b-4c69-946f-992d95d276e2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "79aafb03-9a43-4b5d-881d-bb40b8d4320b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3f92fa13-db10-4907-b718-599dc6f5a8fc",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "a3ef4917-9aaf-4c34-90b0-b33948d80f59",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Turn",
+            "id": "9fe79d7f-2994-4bb2-a690-4b0a31ed6692",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "81370cea-2b74-48fe-9686-2b16af547fd5",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "53e83cc0-9d72-4c48-9e29-e6b7e91c1815",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3909f4c0-daa9-4a39-8990-3b2cec12846d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "e851f3a5-618d-439f-8ec3-3a21cf10a4d2",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Drift",
+            "id": "fe910e7d-4364-4ee2-8ca1-0494fc770974",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "22f6ae3e-e3e2-45be-b1d0-0974db77fcc9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "114dab4e-0eb2-4ae1-80e4-7dc3948c04da",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

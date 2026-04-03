@@ -1,12 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem; // 1. Added namespace
 
 public class V2KartController : MonoBehaviour
 {
     private float moveInput;
+    private float moveInputRaw; // Store the raw -1 to 1 for rotation logic
     private float turnInput;
     private bool isCarGrounded;
-
-    
 
     public float alignSpeed = 10f;
     public float airAlignSpeed = 1f;
@@ -18,8 +18,7 @@ public class V2KartController : MonoBehaviour
     private int driftDirection;
     private float driftPower;
     private float currentBoost;
-    public float boostDecayRate = 20f; // How fast the boost fades away
-
+    public float boostDecayRate = 20f;
 
     [Header("Visuals & Animations")]
     public Transform kartBody;      
@@ -42,98 +41,114 @@ public class V2KartController : MonoBehaviour
 
     public Rigidbody sphereRB;
 
+    // --- NEW INPUT SYSTEM FIELDS ---
+    [Header("Input Action References")]
+    public InputActionReference moveAction;
+    public InputActionReference turnAction;
+    public InputActionReference driftAction;
+
+    void OnEnable() 
+    {
+        moveAction.action.Enable();
+        turnAction.action.Enable();
+        driftAction.action.Enable();
+
+        // Subscribe to Drift button events
+        driftAction.action.started += OnDriftStarted;
+        driftAction.action.canceled += OnDriftCanceled;
+    }
+
+    void OnDisable() 
+    {
+        moveAction.action.Disable();
+        turnAction.action.Disable();
+        driftAction.action.Disable();
+
+        driftAction.action.started -= OnDriftStarted;
+        driftAction.action.canceled -= OnDriftCanceled;
+    }
+
     void Start()
     {
-        //detach rigidbody from car
         sphereRB.transform.parent = null;
+    }
+
+    // Logic for pressing the drift button
+    private void OnDriftStarted(InputAction.CallbackContext context)
+    {
+        if (isCarGrounded && turnInput != 0 && moveInputRaw > 0 && !isDrifting)
+        {
+            isDrifting = true;
+            driftDirection = turnInput > 0 ? 1 : -1;
+            driftPower = 0f;
+        }
+    }
+
+    // Logic for releasing the drift button
+    private void OnDriftCanceled(InputAction.CallbackContext context)
+    {
+        if (isDrifting)
+        {
+            isDrifting = false;
+            
+            if (driftPower > 150f) currentBoost = 40f;
+            else if (driftPower > 100f) currentBoost = 25f;
+            else if (driftPower > 50f) currentBoost = 15f;
+            
+            driftPower = 0f;
+        }
     }
 
     void Update()
     {
-        moveInput = Input.GetAxisRaw("Vertical");
-        turnInput = Input.GetAxisRaw("Horizontal");
+        // 2. Read values from the new system
+        moveInputRaw = moveAction.action.ReadValue<float>();
+        turnInput = turnAction.action.ReadValue<float>();
 
-        //Decay the boost over time
         if (currentBoost > 0)
         {
             currentBoost -= Time.deltaTime * boostDecayRate;
             if (currentBoost < 0) currentBoost = 0;
         }
 
-        //Start Drifting if we press Space (Jump), are grounded, moving forward, and turning
-        if (Input.GetButtonDown("Jump") && isCarGrounded && turnInput != 0 && moveInput > 0 && !isDrifting)
-        {
-            isDrifting = true;
-            driftDirection = turnInput > 0 ? 1 : -1; // 1 for right, -1 for left
-            driftPower = 0f;
-        }
-
         float actualTurnSpeed = 0f;
 
         if (isDrifting)
         {
-            // Accumulate drift power (fill faster if turning INTO the drift)
             float powerMultiplier = (turnInput == driftDirection) ? 1.5f : 0.5f;
             driftPower += Time.deltaTime * 100f * powerMultiplier;
 
-            // Steering controls how tight/wide the drift is, rather than turning normally
             float baseTurn = driftDirection * baseDriftTurnSpeed;
-
-            // 2. Add or subtract from that turn speed based on the player's steering
             float playerControl = turnInput * driftControlMultiplier;
-
-            // 3. Combine them for the final drift rotation speed
             actualTurnSpeed = baseTurn + playerControl;
-
-            // Release Drift & Apply Boost
-            if (Input.GetButtonUp("Jump"))
-            {
-                isDrifting = false;
-                
-                // Tiers of boost based on how long you drifted
-                if (driftPower > 150f) currentBoost = 40f;      // Tier 3
-                else if (driftPower > 100f) currentBoost = 25f; // Tier 2
-                else if (driftPower > 50f) currentBoost = 15f;  // Tier 1
-                
-                driftPower = 0f;
-            }
         }
         else
         {
-            // Normal Steering
             actualTurnSpeed = turnInput * turnSpeed;
         }
 
-        //adjust speed for car
+        moveInput = moveInputRaw;
         moveInput *= moveInput > 0 ? fwdSpeed : revSpeed;
-
         moveInput += currentBoost;
 
-        //set cars position to sphere
         transform.position = sphereRB.transform.position;
 
-        //set cars rotation
-        float newRotation = actualTurnSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
+        // Using moveInputRaw here so rotation only happens when accelerating/reversing
+        float newRotation = actualTurnSpeed * Time.deltaTime * moveInputRaw;
         transform.Rotate(0, newRotation, 0, Space.World);
 
-        //Raycast GroundCheck
         RaycastHit hit;
         isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 1f, GroundLayer);
-
 
         if(isCarGrounded)
         {
             sphereRB.linearDamping = groundDrag;
-
-            // rotate car to be parallel to ground
             Quaternion targetGroundRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetGroundRotation, Time.deltaTime * alignSpeed);
         }
         else
         {
             sphereRB.linearDamping = airDrag;
-
-            // level out car when in the air
             Quaternion levelRotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, levelRotation, Time.deltaTime * airAlignSpeed * 0.5f);
         }
@@ -145,68 +160,43 @@ public class V2KartController : MonoBehaviour
     {
         if(isCarGrounded)
         {
-            // move car
             sphereRB.AddForce(transform.forward * moveInput, ForceMode.Acceleration);
-        } else
+        } 
+        else
         {
             sphereRB.AddForce(-transform.up * 9.8f);
         }
-
-        
     }
 
     private void OnGUI()
     {
-        // Make the text a bit bigger and easier to read
         GUIStyle style = new GUIStyle();
         style.fontSize = 24;
         style.normal.textColor = Color.white;
-
-        // Calculate actual physical speed (how fast the sphere is moving)
         float currentSpeed = sphereRB.linearVelocity.magnitude;
-
-        // Draw the text on the screen (x, y, width, height)
         GUI.Label(new Rect(20, 20, 300, 40), "Speed: " + Mathf.RoundToInt(currentSpeed), style);
-        
-        // Draw the current boost power right below it
         GUI.Label(new Rect(20, 60, 300, 40), "Boost Reserve: " + Mathf.RoundToInt(currentBoost), style);
     }
 
     private void AnimateVisuals()
     {
-        // 1. Calculate how fast the car is physically rolling forward/backward
         float forwardSpeed = Vector3.Dot(sphereRB.linearVelocity, transform.forward);
         currentWheelSpin += forwardSpeed * wheelSpinSpeed * Time.deltaTime;
 
-        // 2. Tire Spinning & Steering
-        // Create the two rotations independently
-        Quaternion steerRot = Quaternion.Euler(0, 0, turnInput * maxSteerAngle); // Z-axis steering
-        Quaternion spinRot = Quaternion.Euler(0, currentWheelSpin, 0);           // Y-axis spinning
+        Quaternion steerRot = Quaternion.Euler(0, 0, turnInput * maxSteerAngle);
+        Quaternion spinRot = Quaternion.Euler(0, currentWheelSpin, 0);
 
-        // Multiply them together to combine them without wobble (Order matters!)
-        if (frontLeftWheel != null) 
-            frontLeftWheel.localRotation = steerRot * spinRot;
-            
-        if (frontRightWheel != null) 
-            frontRightWheel.localRotation = steerRot * spinRot;
+        if (frontLeftWheel != null) frontLeftWheel.localRotation = steerRot * spinRot;
+        if (frontRightWheel != null) frontRightWheel.localRotation = steerRot * spinRot;
+        if (backLeftWheel != null) backLeftWheel.localRotation = spinRot;
+        if (backRightWheel != null) backRightWheel.localRotation = spinRot;
 
-        // Back wheels just get the spin rotation
-        if (backLeftWheel != null) 
-            backLeftWheel.localRotation = spinRot;
-            
-        if (backRightWheel != null) 
-            backRightWheel.localRotation = spinRot;
-
-        // 3. Steering Wheel Turning
         if (steeringWheel != null)
-        {
             steeringWheel.localEulerAngles = new Vector3(-25, 90, turnInput * -45f);
-        }
 
-        // 4. Kart Leaning & Drift Crab-Walking
         if (kartBody != null)
         {
-            float targetLean = turnInput * -5f; // Slight lean away from the turn during normal driving
+            float targetLean = turnInput * -5f;
             float targetYOffset = 0f;
 
             if (isDrifting)
@@ -219,5 +209,4 @@ public class V2KartController : MonoBehaviour
             kartBody.localRotation = Quaternion.Slerp(kartBody.localRotation, targetBodyRotation, Time.deltaTime * 8f);
         }
     }
-    
 }

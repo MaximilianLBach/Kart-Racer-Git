@@ -301,6 +301,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   sphereRB: {fileID: 2053632049}
+  moveAction: {fileID: 3672901942348947356, guid: 6552d460feda5f241bd934c2e40e6612, type: 3}
+  turnAction: {fileID: 7047719946108086337, guid: 6552d460feda5f241bd934c2e40e6612, type: 3}
+  driftAction: {fileID: 1964051218313036234, guid: 6552d460feda5f241bd934c2e40e6612, type: 3}
 --- !u!1 &105864849
 GameObject:
   m_ObjectHideFlags: 0
