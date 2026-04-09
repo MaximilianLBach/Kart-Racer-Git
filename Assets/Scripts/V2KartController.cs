@@ -1,7 +1,8 @@
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.InputSystem; // 1. Added namespace
 
-public class V2KartController : MonoBehaviour
+public class V2KartController : NetworkBehaviour 
 {
     private float moveInput;
     private float moveInputRaw; // Store the raw -1 to 1 for rotation logic
@@ -41,6 +42,11 @@ public class V2KartController : MonoBehaviour
 
     public Rigidbody sphereRB;
 
+    //Camera settings
+    [SerializeField] Camera playerCamera;
+   
+
+
     // --- NEW INPUT SYSTEM FIELDS ---
     [Header("Input Action References")]
     public InputActionReference moveAction;
@@ -68,8 +74,26 @@ public class V2KartController : MonoBehaviour
         driftAction.action.canceled -= OnDriftCanceled;
     }
 
-    void Start()
+    public override void OnNetworkSpawn()
     {
+        if(!IsOwner)
+        {
+            playerCamera.enabled = false;
+            if (playerCamera.GetComponent<AudioListener>() != null)
+            {
+                playerCamera.GetComponent<AudioListener>().enabled = false;
+
+            }
+            sphereRB.isKinematic = true;
+        }
+        else
+        {
+            playerCamera.enabled = true;
+            playerCamera.GetComponent<AudioListener>().enabled = true;
+            sphereRB.isKinematic = false;
+        }
+
+
         sphereRB.transform.parent = null;
     }
 
@@ -158,7 +182,9 @@ public class V2KartController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isCarGrounded)
+        if (!IsOwner) return;
+
+        if (isCarGrounded)
         {
             sphereRB.AddForce(transform.forward * moveInput, ForceMode.Acceleration);
         } 
