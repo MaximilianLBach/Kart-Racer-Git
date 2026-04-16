@@ -1,6 +1,40 @@
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.InputSystem; // 1. Added namespace
+using System.Collections.Generic;
+
+
+
+//Network variables should be value objects
+public struct InputPayload : INetworkSerializable
+{
+    public int tick;
+    public Vector3 inputVector;
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref tick);
+        serializer.SerializeValue(ref inputVector);
+    }
+}
+
+public struct StatePayload : INetworkSerializable
+{
+    public int tick;
+    public Vector3 position;
+    public Quaternion rotation;
+    public Vector3 velocity;
+    public Vector3 angularVelocity;
+
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref tick);
+        serializer.SerializeValue(ref position);
+        serializer.SerializeValue(ref rotation);
+        serializer.SerializeValue(ref velocity);
+        serializer.SerializeValue(ref angularVelocity);
+    }
+}
 
 public class V2KartController : NetworkBehaviour 
 {
@@ -53,6 +87,22 @@ public class V2KartController : NetworkBehaviour
     public InputActionReference turnAction;
     public InputActionReference driftAction;
 
+
+    //Netcode general
+    NetworkTimer timer;
+    const float k_serverTickRate = 60f; // 60 FPS
+    const int k_bufferSize = 1024;
+
+    //Netcode client specific
+    CircularBuffer<StatePayload> clientStateBuffer;
+    CircularBuffer<InputPayload> clientInputBuffer;
+    StatePayload lastServerState;
+    StatePayload lastProcessedState;
+
+    //Netcode Server specific
+    CircularBuffer<StatePayload> serverStateBuffer;
+    Queue<InputPayload> ServerInputQueue;
+
     void OnEnable() 
     {
         moveAction.action.Enable();
@@ -74,6 +124,20 @@ public class V2KartController : NetworkBehaviour
         driftAction.action.canceled -= OnDriftCanceled;
     }
 
+    private void Awake()
+    {
+        // Initialize General Netcode variables
+        timer = new NetworkTimer(k_serverTickRate);
+
+        // Initialize Client-specific buffers
+        clientStateBuffer = new CircularBuffer<StatePayload>(k_bufferSize);
+        clientInputBuffer = new CircularBuffer<InputPayload>(k_bufferSize);
+
+        // Initialize Server-specific buffers/queues
+        serverStateBuffer = new CircularBuffer<StatePayload>(k_bufferSize);
+        ServerInputQueue = new Queue<InputPayload>();
+    }
+
     public override void OnNetworkSpawn()
     {
         if(!IsOwner)
@@ -84,7 +148,7 @@ public class V2KartController : NetworkBehaviour
                 playerCamera.GetComponent<AudioListener>().enabled = false;
 
             }
-            sphereRB.isKinematic = true;
+            //sphereRB.isKinematic = true;
         }
         else
         {
@@ -125,6 +189,7 @@ public class V2KartController : NetworkBehaviour
 
     void Update()
     {
+
         // 2. Read values from the new system
         moveInputRaw = moveAction.action.ReadValue<float>();
         turnInput = turnAction.action.ReadValue<float>();
@@ -137,59 +202,159 @@ public class V2KartController : NetworkBehaviour
 
         float actualTurnSpeed = 0f;
 
-        if (isDrifting)
-        {
-            float powerMultiplier = (turnInput == driftDirection) ? 1.5f : 0.5f;
-            driftPower += Time.deltaTime * 100f * powerMultiplier;
-
-            float baseTurn = driftDirection * baseDriftTurnSpeed;
-            float playerControl = turnInput * driftControlMultiplier;
-            actualTurnSpeed = baseTurn + playerControl;
-        }
-        else
-        {
-            actualTurnSpeed = turnInput * turnSpeed;
-        }
-
-        moveInput = moveInputRaw;
-        moveInput *= moveInput > 0 ? fwdSpeed : revSpeed;
-        moveInput += currentBoost;
-
-        transform.position = sphereRB.transform.position;
-
-        // Using moveInputRaw here so rotation only happens when accelerating/reversing
-        float newRotation = actualTurnSpeed * Time.deltaTime * moveInputRaw;
-        transform.Rotate(0, newRotation, 0, Space.World);
-
-        RaycastHit hit;
-        isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 1f, GroundLayer);
-
-        if(isCarGrounded)
-        {
-            sphereRB.linearDamping = groundDrag;
-            Quaternion targetGroundRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetGroundRotation, Time.deltaTime * alignSpeed);
-        }
-        else
-        {
-            sphereRB.linearDamping = airDrag;
-            Quaternion levelRotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, levelRotation, Time.deltaTime * airAlignSpeed * 0.5f);
-        }
+        
 
         AnimateVisuals();
+
+        //Netcode
+        timer.Update(Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         if (!IsOwner) return;
 
+        while (timer.ShouldTick())
+        {
+            HandleClientTick();
+            HandleServerTick();
+        }
+
+        
+    }
+
+    void HandleServerTick()
+    {
+        var bufferIndex = -1;
+        if (ServerInputQueue.Count > 0) Debug.Log("Server processing " + ServerInputQueue.Count + " inputs");
+        while (ServerInputQueue.Count > 0) 
+        {
+            InputPayload inputPayload = ServerInputQueue.Dequeue();
+
+            bufferIndex = inputPayload.tick % k_bufferSize;
+
+            StatePayload statePayload = SimulateMovement(inputPayload);
+            serverStateBuffer.Add(statePayload, bufferIndex);
+        }
+
+        if (bufferIndex == -1) return;
+        SendToClientRpc(serverStateBuffer.Get(bufferIndex));
+    }
+
+    StatePayload SimulateMovement(InputPayload inputPayload)
+    {
+        var oldMode = Physics.simulationMode;
+        Physics.simulationMode = SimulationMode.Script;
+
+        Move(inputPayload);
+        Physics.Simulate(timer.MinTimeBetweenTicks);
+        Physics.simulationMode = oldMode;
+
+        return new StatePayload()
+        {
+            tick = inputPayload.tick,
+            position = transform.position,
+            rotation = transform.rotation,
+            velocity = sphereRB.linearVelocity,
+            angularVelocity = sphereRB.angularVelocity
+        };
+    }
+
+    [ClientRpc]
+    void SendToClientRpc(StatePayload statePayload)
+    {
+        if (!IsOwner) return;
+        lastServerState = statePayload;
+    }
+
+    void HandleClientTick()
+    {
+        if (!IsClient) return;
+
+        var currentTick = timer.CurrentTick;
+        var bufferIndex = currentTick % k_bufferSize;
+
+        InputPayload inputPayload = new InputPayload()
+        {
+            tick = currentTick,
+            inputVector = new Vector3(turnInput, moveInputRaw, 0)
+        };
+
+        clientInputBuffer.Add(inputPayload, bufferIndex);
+        SendToServerRpc(inputPayload);
+
+        StatePayload statePayload = ProcessMovement(inputPayload);
+        clientStateBuffer.Add(statePayload, bufferIndex);
+
+        //HandleServerReconciliation();
+
+
+    }
+
+    [ServerRpc]
+    void SendToServerRpc(InputPayload input)
+    {
+        ServerInputQueue.Enqueue(input);
+    }
+    
+    StatePayload ProcessMovement(InputPayload input)
+    {
+        Move(input);
+
+        return new StatePayload()
+        {
+            tick = input.tick,
+            position = transform.position,
+            rotation = transform.rotation,
+            velocity = sphereRB.linearVelocity,
+            angularVelocity = sphereRB.angularVelocity
+        };
+    }
+
+    void Move(InputPayload input)
+    {
+        float moveRaw = input.inputVector.y;
+        float turn = input.inputVector.x;
+
+        if (currentBoost > 0)
+        {
+            // Use MinTimeBetweenTicks instead of deltaTime
+            currentBoost -= timer.MinTimeBetweenTicks * boostDecayRate;
+            if (currentBoost < 0) currentBoost = 0;
+        }
+
+        if (isDrifting)
+        {
+            float powerMultiplier = (turn == driftDirection) ? 1.5f : 0.5f;
+            driftPower += timer.MinTimeBetweenTicks * 100f * powerMultiplier;
+        }
+
+        // 1. Raycast for grounding (Must be here so Server can verify)
+        RaycastHit hit;
+        isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 1.5f, GroundLayer);
+
+        // 2. Calculate Speed
+        float currentMoveInput = moveRaw;
+        currentMoveInput *= (currentMoveInput > 0) ? fwdSpeed : revSpeed;
+        currentMoveInput += currentBoost;
+
+        // 3. Rotation (Using MinTimeBetweenTicks)
+        float actualTurnSpeed = isDrifting ? (driftDirection * baseDriftTurnSpeed + turn * driftControlMultiplier) : (turn * turnSpeed);
+        float newRotation = actualTurnSpeed * timer.MinTimeBetweenTicks * moveRaw;
+        transform.Rotate(0, newRotation, 0, Space.World);
+
+        // 4. Ground Alignment logic should also be here
         if (isCarGrounded)
         {
-            sphereRB.AddForce(transform.forward * moveInput, ForceMode.Acceleration);
-        } 
+            sphereRB.linearDamping = groundDrag;
+            Quaternion targetGroundRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetGroundRotation, timer.MinTimeBetweenTicks * alignSpeed);
+
+            sphereRB.AddForce(transform.forward * currentMoveInput, ForceMode.Acceleration);
+        }
         else
         {
+            sphereRB.linearDamping = airDrag;
             sphereRB.AddForce(-transform.up * 9.8f);
         }
     }
