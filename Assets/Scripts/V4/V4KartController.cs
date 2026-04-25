@@ -1,6 +1,6 @@
- using UnityEngine;
+using UnityEngine;
 
-public class V2KartController : MonoBehaviour
+public class V4KartController : MonoBehaviour
 {
     private float moveInput;
     private float turnInput;
