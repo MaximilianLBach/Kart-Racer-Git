@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/KartTutorial.unity
+    guid: b52e8d9a4bd7a4f48b29ff923eb8cfda
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 09160f94654234249ba95feefa0370b7, type: 3}

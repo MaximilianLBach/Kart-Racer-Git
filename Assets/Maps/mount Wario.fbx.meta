@@ -1,0 +1,665 @@
+fileFormatVersion: 2
+guid: e6a79448cd0d0174abf07a4e13bd582e
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flag_Triangle1
+    second: {fileID: 2100000, guid: d863becec04fb6e428563d9358f836db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PanelFlame1
+    second: {fileID: 2100000, guid: d6aa2a1540917b749866ff571fb35e0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sm_Gate_M
+    second: {fileID: 2100000, guid: 6e8f3b88dbcf22240bd7ea13963764ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TreeSnow_Bark
+    second: {fileID: 2100000, guid: c4b3c4cda0257ee48b2550dd8736db2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TreeSnow_Leaf
+    second: {fileID: 2100000, guid: 12a05ed0ccd7a87488d0ebe1c5c3083b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ef_dashboard
+    second: {fileID: 2100000, guid: 1a9af43ba621db6438343111f195fc69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ef_glideboard
+    second: {fileID: 2100000, guid: 98a3d47e9c880ae48bf80160034b9b65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ef_gravityboard
+    second: {fileID: 2100000, guid: 56643da77639b9d4cbf459d5e7e118b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ef_river01F
+    second: {fileID: 2100000, guid: 66d4733d5e27b4946834ac40a464e902, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ef_water02
+    second: {fileID: 2100000, guid: b0aa163d777b4af439e798c16c9a715a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ef_water02_dam
+    second: {fileID: 2100000, guid: 135f1e11865a5454abe3c6514bfecb47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ef_waterfall06_SnowMountain
+    second: {fileID: 2100000, guid: f421eaab77fcbdc4297f381e870527d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_SmBalloon
+    second: {fileID: 2100000, guid: 577fe08e72585cf43a12e98fd90439fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_SmLight
+    second: {fileID: 2100000, guid: c81d0d55f904c724eb47e856bbf178ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_Tent
+    second: {fileID: 2100000, guid: 2604bad103a2cba4bb5a7c0fbd3c5958, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: otsuka_working_ws_NSE_TV00
+    second: {fileID: 2100000, guid: 6572d58a1a2879d44911c6772d0336ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sl_SnowCoverDown
+    second: {fileID: 2100000, guid: 5b93548460a0d234898ef466feef56d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_CAVE_holeRoad02
+    second: {fileID: 2100000, guid: ea72777590bba4d49a85726e074bd09e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_PanelFlame
+    second: {fileID: 2100000, guid: c527af443ca6dd741b7d93bb4715ee9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_fence
+    second: {fileID: 2100000, guid: 7be5e357107fb4a43aa82b72b98b7de8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_ice
+    second: {fileID: 2100000, guid: 1a6d00385bf560943b9c7037b7904e48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_ice2
+    second: {fileID: 2100000, guid: 109913651c0ab544aa6ca6c5db626737, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_ice_WhiteTrail
+    second: {fileID: 2100000, guid: c0eb9b6f0f72ddf419a0a50a27ec74b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_jumpIce01
+    second: {fileID: 2100000, guid: ebb98628bdd19c3498ebb07021ce43d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_light01
+    second: {fileID: 2100000, guid: 220c74a0448ec9843b84b74dffac1995, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_rock01
+    second: {fileID: 2100000, guid: ce15c955bebb50b4399c8a2be44ba1c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_rock01_Yfog
+    second: {fileID: 2100000, guid: 40836c901abe06447af29816d25e68f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_rock01_ref
+    second: {fileID: 2100000, guid: 4dbbb1cf47b0652408c8aa72fa25ff4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_rock03
+    second: {fileID: 2100000, guid: 0b7900715d58bd544b2ed4b38549eaa4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_rock04
+    second: {fileID: 2100000, guid: 774818b566ec909439ef3b97dc77c41d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_rockSnow01_near
+    second: {fileID: 2100000, guid: d0ce1ba27206739449c333090a2ffe34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Cave_snowroadHandRail
+    second: {fileID: 2100000, guid: dfa2e2ec634c9984cb73429d78e9c1bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_DamInner_Wall01
+    second: {fileID: 2100000, guid: 62b74b52f1ae1254cbe8d34aec00e4dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_DamInner_Wall01_Dam
+    second: {fileID: 2100000, guid: 3b33ca6ee4da2ba419d89b0ae76d0e58, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_DamInner_holeRoad02
+    second: {fileID: 2100000, guid: c7dbc75c91c85814faae05fb5bafd5bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_DamInner_metalWall01
+    second: {fileID: 2100000, guid: 4c6f9ebc82f287844a99bde90fc73944, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_DamMetal
+    second: {fileID: 2100000, guid: f5272591984ff5540957651cc431dafe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_DamMetal_01
+    second: {fileID: 2100000, guid: ec754c3e75fdca34983cc973835b8e52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_DamMetal_01_Dam
+    second: {fileID: 2100000, guid: 4ffd761e1efd3314a99813055e5fdc62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_EmmisionColor
+    second: {fileID: 2100000, guid: 900771b9e1e1e9a45b796188955b7155, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_EmmisionColor_LargeHill
+    second: {fileID: 2100000, guid: 6a6774e5d6469f64580807cdbec24fbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_GoalLine
+    second: {fileID: 2100000, guid: 65b344c0f02e73f4782f06aee1cedb43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_Ladder
+    second: {fileID: 2100000, guid: a3bb1cc8be14d664fa491756f65b7b60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_NS2_Gallery_00
+    second: {fileID: 2100000, guid: 79545cf67d4ab6343bc66254fdaac162, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_RoadSideStake
+    second: {fileID: 2100000, guid: 1d970251afcab0a48ab925cc36a34fe7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_UniteAbe01
+    second: {fileID: 2100000, guid: 2090fe9a140bde149b8d2902752ab3f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_concrete01
+    second: {fileID: 2100000, guid: 308afe0c00941d74bb5376533a9f5195, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_concrete02
+    second: {fileID: 2100000, guid: 1f2c9c548bc97934c87cf6763f70cdac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_concrete03
+    second: {fileID: 2100000, guid: 4aea33d62ac6fed4c992d4838a6465b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_concreteBench01
+    second: {fileID: 2100000, guid: 7e59ede671cc9fb4899f6380f30d4339, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_concreteTower
+    second: {fileID: 2100000, guid: 2306e200a02467449911ac80f4f94c03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_damLogo01_Dam
+    second: {fileID: 2100000, guid: d4e1dba700ec4ee4da69987a2100f5f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_damRoad01
+    second: {fileID: 2100000, guid: e91dc6603297a9c4da4e7b0969a17990, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_damRoad01_damLogo
+    second: {fileID: 2100000, guid: 1c45c6164ef5c4c4c9195fd8a599562d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_damWall01
+    second: {fileID: 2100000, guid: 89375fa23dcc00f4c85e5eae71f5d571, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_damWall01_damLogo
+    second: {fileID: 2100000, guid: 9611970dba755004c93a7a59afbf34f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_damWall02
+    second: {fileID: 2100000, guid: 9c2fb73d6e4c48146a1b7d224648c24a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_depthshadow
+    second: {fileID: 2100000, guid: 64b0f3142aa280341a610b2ed4c22974, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_holeRoad02
+    second: {fileID: 2100000, guid: 03ef4d7c428c53641a78ed62158eb056, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_hwood02
+    second: {fileID: 2100000, guid: 4321ec2027fac7c4d8bb5624f2354add, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_ice01
+    second: {fileID: 2100000, guid: 8ce9312012673004b86a6d9731383108, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_iceSnow01
+    second: {fileID: 2100000, guid: 3b5dd1ee5782b9541bd8839e8020c93e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_jumpSnow01
+    second: {fileID: 2100000, guid: 24c28949c65e92a4c8590370d0ce6ffb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_jumpSnow01_Dam
+    second: {fileID: 2100000, guid: 060ea8bf8264d404988bd79c1a27a302, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_metalPillar02
+    second: {fileID: 2100000, guid: f5e21b16b4626194db1e7ed76fcb0ce3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_metalWall01
+    second: {fileID: 2100000, guid: fcc8162575cd55043a410c1907bad2b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_mountain01
+    second: {fileID: 2100000, guid: df73c6c2586e3dc49987f31ef34fe6f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_mountain03
+    second: {fileID: 2100000, guid: f93d6a42c8afa5b40bb779d76e1f2e36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_mountain_Top
+    second: {fileID: 2100000, guid: 97180624dfcd59b408665f3b988d163b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_ref01
+    second: {fileID: 2100000, guid: 6080f8ae0e10e1c4e8900a2c01c4ebfa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_roadframe
+    second: {fileID: 2100000, guid: 6258f074071d1694194f74b26eed38e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_rockSnow02
+    second: {fileID: 2100000, guid: 6ae0d95334e24e9498cfec499e78a73e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_rockSnow02_depthOUT
+    second: {fileID: 2100000, guid: d70fddbdd6553b74a84c6de88dfc9e30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_rockWall03
+    second: {fileID: 2100000, guid: 444b6cc6bac42854bad9bd3090b1a3ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_signboard
+    second: {fileID: 2100000, guid: d4ff65c369a924047b44ee1a44c873ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_signboard_Alpha
+    second: {fileID: 2100000, guid: c43cb19798c3a33479c892985e6634da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_signboard_Touka
+    second: {fileID: 2100000, guid: d5be428f061a74540b409c485d8a40e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_signboard_near04
+    second: {fileID: 2100000, guid: 11ca4d95cdf030e49bd49dc028188fd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snow01
+    second: {fileID: 2100000, guid: 779d0c1578557fa418b7f13a39704144, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snow05
+    second: {fileID: 2100000, guid: 83462d6d44894814ca5eeeccc9763a16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowConnect01
+    second: {fileID: 2100000, guid: 2c3592deb4897454c8b7900c373e0445, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowRoof01
+    second: {fileID: 2100000, guid: d732e7962c88df3479f6704c92dea2c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowRoof01_DIRT
+    second: {fileID: 2100000, guid: 62141b96e6a5cac4f9e451addfd9f0f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowRoof01_Top
+    second: {fileID: 2100000, guid: 5786c30249abe4a4e9f38d1143763af1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowRoof01_depthOUT
+    second: {fileID: 2100000, guid: dbf54edd4c842cd44b7a10d0fc23b9aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snow_largeHill
+    second: {fileID: 2100000, guid: df5abfde9e1a5ef40bc03d1de6902c30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowroad04s
+    second: {fileID: 2100000, guid: 96d91bde751941d40a083647ccb05e57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowroad05
+    second: {fileID: 2100000, guid: be4c172c08b87b6429166eb9429cc260, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowroad_Ktens
+    second: {fileID: 2100000, guid: de95d6b3c4b7f424a8f8460226bd3ef1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_standSide01
+    second: {fileID: 2100000, guid: fb3e3f5afe02b804fb0cac1058acedd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tr_MetalParts01
+    second: {fileID: 2100000, guid: 2b68e47525b54694aaaba8c0f60a1953, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tr_MetalParts01_Dam
+    second: {fileID: 2100000, guid: 86b3d91165480354faeaf55928fe194a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tr_damConcSet01
+    second: {fileID: 2100000, guid: 1964eb00a2ae7194a98c1abf1e63cb1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tr_damConcSet01_Dam
+    second: {fileID: 2100000, guid: a54519074822400459bcae82466656fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tr_pipe01
+    second: {fileID: 2100000, guid: a8239d1661e263c43bbed8a2ed5ff625, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tr_pipe01_Dam
+    second: {fileID: 2100000, guid: 958daee8a1956f04cbaf58637b343199, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_trusMetal01
+    second: {fileID: 2100000, guid: 88838fca93bd8b648a3081089683a032, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_trusMetal01_noAlpha
+    second: {fileID: 2100000, guid: 833d0280d6738ca4aa7b2a0ba15cabd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_trusMetal03_noAlpha
+    second: {fileID: 2100000, guid: 6d09139a4316ee2478840ee3f213a78d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tunnelDoor01
+    second: {fileID: 2100000, guid: fd26a2efc297b5846970336cb6bfaf8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tunnelLight01
+    second: {fileID: 2100000, guid: b536f03f18f645d4b80abca31ef9eff2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tunnelWall01
+    second: {fileID: 2100000, guid: 2fa944ee3638118468c52f19b81e9db9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tunnelWall02
+    second: {fileID: 2100000, guid: 3fae2ec00e7885e4bb47e52a31b136e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tunnelWall03
+    second: {fileID: 2100000, guid: cd448df9da48ab645a37b5fd650b4da8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_tunnelWall04
+    second: {fileID: 2100000, guid: b994b4615b29fce44b1abd8c7ed0923e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_wallTile01
+    second: {fileID: 2100000, guid: f869caaed79d89443b658b2460dbf47b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_wallTile02
+    second: {fileID: 2100000, guid: c0e3ef1b66fadd1479640996db063569, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_warioSnowResort_Logo01
+    second: {fileID: 2100000, guid: 356baf531b30faf4f8cddf4a82cc38cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_window03
+    second: {fileID: 2100000, guid: 0589cc515b111a646b2ebef6b24ae5e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_woodRoad01
+    second: {fileID: 2100000, guid: 3fa16c3450855b14b9f71fa205262920, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ws_NS_ESboard00
+    second: {fileID: 2100000, guid: 0dcb914bdda0ba4438ff8f1185f3b464, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
