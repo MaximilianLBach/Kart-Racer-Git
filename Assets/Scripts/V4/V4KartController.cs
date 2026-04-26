@@ -66,7 +66,7 @@ public class V4KartController : NetworkBehaviour
 
         if(isCarGrounded)
         {
-            sphereRB.linearDamping = groundDrag;
+            if (IsOwner) sphereRB.linearDamping = groundDrag;
 
             // rotate car to be parallel to ground
             Quaternion targetGroundRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
@@ -74,7 +74,7 @@ public class V4KartController : NetworkBehaviour
         }
         else
         {
-            sphereRB.linearDamping = airDrag;
+            if (IsOwner) sphereRB.linearDamping = airDrag;
 
             // level out car when in the air
             Quaternion levelRotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
