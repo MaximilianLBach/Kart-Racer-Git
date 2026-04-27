@@ -60,6 +60,10 @@ public class V5KartController : NetworkBehaviour
     public InputActionReference turnAction;
     public InputActionReference driftAction;
 
+    [Header("Collision Setup")]
+    public Collider kartVisualCollider; 
+    public Collider kartSphereCollider;
+
     void OnEnable() 
     {
         moveAction.action.Enable();
@@ -82,6 +86,11 @@ public class V5KartController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        if (kartVisualCollider != null && kartSphereCollider != null)
+        {
+            Physics.IgnoreCollision(kartVisualCollider, kartSphereCollider);
+        }
+        
         if (IsOwner)
         {
             // Only the local player needs the physics sphere detached to drive

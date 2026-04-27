@@ -560,9 +560,9 @@ ModelImporter:
       name: ws_NS_ESboard00
     second: {fileID: 2100000, guid: 0dcb914bdda0ba4438ff8f1185f3b464, type: 2}
   materials:
-    materialImportMode: 2
-    materialName: 0
-    materialSearch: 1
+    materialImportMode: 1
+    materialName: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
