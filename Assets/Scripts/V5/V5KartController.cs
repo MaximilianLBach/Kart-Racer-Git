@@ -66,6 +66,9 @@ public class V5KartController : NetworkBehaviour
     public Collider kartVisualCollider; 
     public Collider kartSphereCollider;
 
+    [Header("Race Components")]
+    public KartLapTracker lapTracker;
+
     void OnEnable() 
     {
         moveAction.action.Enable();
@@ -149,8 +152,27 @@ public class V5KartController : NetworkBehaviour
         if (IsOwner)
         {
             // 1. OWNER LOGIC: Read hardware inputs
-            moveInputRaw = moveAction.action.ReadValue<float>();
-            turnInput = turnAction.action.ReadValue<float>();
+            bool canDrive = false;
+            if (RaceManager.Instance != null && RaceManager.Instance.isRaceActive.Value)
+            {
+                canDrive = true;
+            }
+            if (lapTracker != null && lapTracker.isFinished.Value)
+            {
+                canDrive = false; // Override and lock controls if they crossed the finish line
+            }
+
+            if (canDrive)
+            {
+                moveInputRaw = moveAction.action.ReadValue<float>();
+                turnInput = turnAction.action.ReadValue<float>();
+            }
+            else
+            {
+                moveInputRaw = 0f;
+                turnInput = 0f;
+                isDrifting = false;
+            }
 
             // Broadcast inputs to remote clients
             netMoveInputRaw.Value = moveInputRaw;

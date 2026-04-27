@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3093055628
+  GlobalObjectIdHash: 361171878
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -630,6 +630,7 @@ MonoBehaviour:
   driftAction: {fileID: 1284543877577975845, guid: 5a69fdda71e40e4449fbf862c934949f, type: 3}
   kartVisualCollider: {fileID: 2791055256841767576}
   kartSphereCollider: {fileID: 6634896919983526633}
+  lapTracker: {fileID: 814477473977572877}
 --- !u!114 &1692043355171653389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,6 +690,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KartLapTracker
   ShowTopMostFoldoutHeaderGroup: 1
+  isFinished:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
   currentLap:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0

@@ -3,8 +3,11 @@ using Unity.Netcode;
 
 public class KartLapTracker : NetworkBehaviour
 {
+    [Header("Networked Progress")]
+    public NetworkVariable<bool> isFinished = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private int mapTotalCheckpoints; 
     private int mapTotalLaps;
+    private bool hasFinishedRace = false;
 
     [Header("Networked Progress")]
     public NetworkVariable<int> currentLap = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
@@ -83,9 +86,16 @@ public class KartLapTracker : NetworkBehaviour
                 currentLap.Value++;
 
                 if (currentLap.Value > mapTotalLaps)
-                {
-                    Debug.Log($"Player {OwnerClientId} finished the race!");
-                }
+             {
+                 if (!hasFinishedRace)
+                 {
+                     hasFinishedRace = true;
+                     isFinished.Value = true; // Tell everyone this kart is done!
+                     
+                     // Tell the server we crossed the finish line!
+                     RaceManager.Instance.PlayerFinished(OwnerClientId);
+                 }
+             }
             }
         }
     }
