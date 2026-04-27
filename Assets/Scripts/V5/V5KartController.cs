@@ -15,6 +15,8 @@ public class V5KartController : NetworkBehaviour
     private float moveInputRaw;
     private float turnInput;
     private bool isCarGrounded;
+    private Vector3 currentGravityDir = Vector3.down;
+    private bool isInAntiGravZone = false;
 
     public float alignSpeed = 10f;
     public float airAlignSpeed = 1f;
@@ -191,10 +193,21 @@ public class V5KartController : NetworkBehaviour
 
             // Ground alignment
             RaycastHit hit;
-            isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 1f, GroundLayer);
+            isCarGrounded = Physics.Raycast(transform.position, -transform.up, out hit, 1.5f, GroundLayer);
 
             if(isCarGrounded)
             {
+                isInAntiGravZone = hit.collider.CompareTag("AntiGravTrack");
+
+                if (isInAntiGravZone)
+                {
+                    currentGravityDir = -hit.normal; // Wall becomes "Down"
+                }
+                else
+                {
+                    currentGravityDir = Vector3.down; // Earth is "Down"
+                }
+
                 if (IsOwner) sphereRB.linearDamping = groundDrag;
 
                 Quaternion targetGroundRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
@@ -204,7 +217,7 @@ public class V5KartController : NetworkBehaviour
             {
                 if (IsOwner) sphereRB.linearDamping = airDrag;
 
-                Quaternion levelRotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
+                Quaternion levelRotation = Quaternion.FromToRotation(transform.up, -currentGravityDir) * transform.rotation;
                 transform.rotation = Quaternion.Slerp(transform.rotation, levelRotation, Time.deltaTime * airAlignSpeed * 0.5f);
             }
         }
@@ -229,10 +242,13 @@ public class V5KartController : NetworkBehaviour
         if(isCarGrounded)
         {
             sphereRB.AddForce(transform.forward * moveInput, ForceMode.Acceleration);
+            
+            float stickForce = isInAntiGravZone ? 20f : 9.8f; 
+            sphereRB.AddForce(currentGravityDir * stickForce, ForceMode.Acceleration);
         } 
         else
         {
-            sphereRB.AddForce(-transform.up * 9.8f);
+            sphereRB.AddForce(currentGravityDir * 9.8f, ForceMode.Acceleration);
         }
     }
 
