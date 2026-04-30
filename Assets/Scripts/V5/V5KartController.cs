@@ -54,7 +54,7 @@ public class V5KartController : NetworkBehaviour
     public Rigidbody sphereRB;
 
     [Header("Multiplayer Setup")]
-    public Camera playerCamera;
+    public GameObject xrOrigin;
     public AudioListener playerAudioListener;
 
     [Header("Input Action References")]
@@ -99,7 +99,7 @@ public class V5KartController : NetworkBehaviour
             sphereRB.transform.position = transform.position;
             sphereRB.transform.parent = null;
 
-            if (playerCamera != null) playerCamera.enabled = true;
+            if (xrOrigin != null) xrOrigin.SetActive(true);
             if (playerAudioListener != null) playerAudioListener.enabled = true;
         }
         else
@@ -108,7 +108,7 @@ public class V5KartController : NetworkBehaviour
             // We destroy it so it doesn't clutter the scene or cause rogue collisions.
             Destroy(sphereRB.gameObject);
 
-            if (playerCamera != null) playerCamera.enabled = false;
+            if (xrOrigin != null) xrOrigin.SetActive(false);
             if (playerAudioListener != null) playerAudioListener.enabled = false;
         }
 
