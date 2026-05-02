@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using UnityEngine.XR.Content.Interaction;
 
 public class V5KartController : NetworkBehaviour
 {
@@ -65,6 +66,9 @@ public class V5KartController : NetworkBehaviour
     [Header("Collision Setup")]
     public Collider kartVisualCollider; 
     public Collider kartSphereCollider;
+
+    [Header("VR Controls")]
+    public XRKnob vrSteeringWheel;
 
     void OnEnable() 
     {
@@ -150,7 +154,17 @@ public class V5KartController : NetworkBehaviour
         {
             // 1. OWNER LOGIC: Read hardware inputs
             moveInputRaw = moveAction.action.ReadValue<float>();
-            turnInput = turnAction.action.ReadValue<float>();
+
+            if (vrSteeringWheel != null)
+            {
+                // XR Knob outputs 0 (Full Left) to 1 (Full Right). Center is 0.5.
+                // We multiply and subtract to map this nicely to -1 (Left) and 1 (Right)!
+                turnInput = (vrSteeringWheel.value - 0.5f) * 2f;
+            }
+            else
+            {
+                turnInput = turnAction.action.ReadValue<float>();
+            }
 
             // Broadcast inputs to remote clients
             netMoveInputRaw.Value = moveInputRaw;
@@ -279,7 +293,14 @@ public class V5KartController : NetworkBehaviour
         if (backRightWheel != null) backRightWheel.localRotation = spinRot;
 
         if (steeringWheel != null)
-            steeringWheel.localEulerAngles = new Vector3(0, turnInput * -45f, 0);
+        {
+            // Only animate the wheel via code for REMOTE players. 
+            // Your real VR hands are already handling the rotation locally!
+            if (!IsOwner)
+            {
+                steeringWheel.localEulerAngles = new Vector3(0, turnInput * -45f, 0);
+            }
+        }
 
         // Lean chassis
         if (kartBody != null)
