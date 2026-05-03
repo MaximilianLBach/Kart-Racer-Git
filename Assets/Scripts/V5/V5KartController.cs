@@ -207,7 +207,7 @@ public class V5KartController : NetworkBehaviour
             // Move & Rotate Kart
             transform.position = sphereRB.transform.position;
             float newRotation = actualTurnSpeed * Time.deltaTime * moveInputRaw;
-            transform.Rotate(0, newRotation, 0, Space.World);
+            transform.Rotate(0, newRotation, 0, Space.Self);
 
             // Ground alignment
             RaycastHit hit;
