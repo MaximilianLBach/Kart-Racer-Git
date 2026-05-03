@@ -71,6 +71,10 @@ public class V5KartController : NetworkBehaviour
     public XRKnob vrSteeringWheel;
     public Transform driftStick;
 
+    [Header("Status Effects")]
+    public NetworkVariable<bool> isInvincible = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    private bool isSpinningOut = false;
+
     void OnEnable() 
     {
         moveAction.action.Enable();
@@ -156,19 +160,65 @@ public class V5KartController : NetworkBehaviour
     {
         if (IsOwner)
         {
-            // 1. OWNER LOGIC: Read hardware inputs
-            moveInputRaw = moveAction.action.ReadValue<float>();
-
-            if (vrSteeringWheel != null)
+            // --- NEW: Block driving inputs if we are spinning out ---
+            if (!isSpinningOut) 
             {
-                // XR Knob outputs 0 (Full Left) to 1 (Full Right). Center is 0.5.
-                // We multiply and subtract to map this nicely to -1 (Left) and 1 (Right)!
-                turnInput = (vrSteeringWheel.value - 0.5f) * 2f;
+                // 1. OWNER LOGIC: Read hardware inputs
+                moveInputRaw = moveAction.action.ReadValue<float>();
+
+                if (vrSteeringWheel != null)
+                {
+                    // XR Knob outputs 0 (Full Left) to 1 (Full Right). Center is 0.5.
+                    // We multiply and subtract to map this nicely to -1 (Left) and 1 (Right)!
+                    turnInput = (vrSteeringWheel.value - 0.5f) * 2f;
+                }
+                else
+                {
+                    turnInput = turnAction.action.ReadValue<float>();
+                }
+
+                // Boost decay
+                if (currentBoost > 0)
+                {
+                    currentBoost -= Time.deltaTime * boostDecayRate;
+                    if (currentBoost < 0) currentBoost = 0;
+                }
+
+                float actualTurnSpeed = 0f;
+
+                // Drift steering calculation
+                if (isDrifting)
+                {
+                    float powerMultiplier = (turnInput == driftDirection) ? 1.5f : 0.5f;
+                    driftPower += Time.deltaTime * 100f * powerMultiplier;
+
+                    float baseTurn = driftDirection * baseDriftTurnSpeed;
+                    float playerControl = turnInput * driftControlMultiplier;
+                    actualTurnSpeed = baseTurn + playerControl;
+                }
+                else
+                {
+                    actualTurnSpeed = turnInput * turnSpeed;
+                }
+
+                moveInput = moveInputRaw;
+                moveInput *= moveInput > 0 ? fwdSpeed : revSpeed;
+                moveInput += currentBoost;
+
+                // Rotate Kart based on steering
+                float newRotation = actualTurnSpeed * Time.deltaTime * moveInputRaw;
+                transform.Rotate(0, newRotation, 0, Space.Self);
             }
             else
             {
-                turnInput = turnAction.action.ReadValue<float>();
+                // If we ARE spinning out, force all driving variables to zero!
+                moveInput = 0f;
+                moveInputRaw = 0f;
+                turnInput = 0f;
+                isDrifting = false;
             }
+
+            // --- The following code runs NO MATTER WHAT so the kart stays attached to the track ---
 
             // Broadcast inputs to remote clients
             netMoveInputRaw.Value = moveInputRaw;
@@ -176,38 +226,8 @@ public class V5KartController : NetworkBehaviour
             netIsDrifting.Value = isDrifting;
             netDriftDirection.Value = driftDirection;
 
-            // Boost decay
-            if (currentBoost > 0)
-            {
-                currentBoost -= Time.deltaTime * boostDecayRate;
-                if (currentBoost < 0) currentBoost = 0;
-            }
-
-            float actualTurnSpeed = 0f;
-
-            // Drift steering calculation
-            if (isDrifting)
-            {
-                float powerMultiplier = (turnInput == driftDirection) ? 1.5f : 0.5f;
-                driftPower += Time.deltaTime * 100f * powerMultiplier;
-
-                float baseTurn = driftDirection * baseDriftTurnSpeed;
-                float playerControl = turnInput * driftControlMultiplier;
-                actualTurnSpeed = baseTurn + playerControl;
-            }
-            else
-            {
-                actualTurnSpeed = turnInput * turnSpeed;
-            }
-
-            moveInput = moveInputRaw;
-            moveInput *= moveInput > 0 ? fwdSpeed : revSpeed;
-            moveInput += currentBoost;
-
-            // Move & Rotate Kart
+            // Move Kart to follow the physics sphere
             transform.position = sphereRB.transform.position;
-            float newRotation = actualTurnSpeed * Time.deltaTime * moveInputRaw;
-            transform.Rotate(0, newRotation, 0, Space.Self);
 
             // Ground alignment
             RaycastHit hit;
@@ -334,5 +354,66 @@ public class V5KartController : NetworkBehaviour
             Quaternion targetBodyRotation = Quaternion.Euler(basePitch, targetYOffset, targetLean);
             kartBody.localRotation = Quaternion.Slerp(kartBody.localRotation, targetBodyRotation, Time.deltaTime * 8f);
         }
+    }
+
+    [ClientRpc]
+    public void ApplyBoostClientRpc()
+    {
+        if (IsOwner)
+        {
+            // Instantly fill your boost tank (uses your existing drift boost logic!)
+            currentBoost = 50f; 
+        }
+    }
+
+    [ClientRpc]
+    public void ActivateInvincibilityClientRpc()
+    {
+        if (IsServer) isInvincible.Value = true;
+        
+        // TODO: Add shiny particle effects here!
+
+        // Automatically turn it off after 5 seconds
+        if (IsServer) Invoke(nameof(EndInvincibility), 5f);
+    }
+
+    private void EndInvincibility()
+    {
+        isInvincible.Value = false;
+    }
+
+    // Called by the Shell script when it hits you
+    [ClientRpc]
+    public void TakeHitClientRpc()
+    {
+        if (isInvincible.Value) return; // Star power saves you!
+
+        if (IsOwner)
+        {
+            // Kill all momentum
+            sphereRB.linearVelocity = Vector3.zero;
+            moveInputRaw = 0f;
+            currentBoost = 0f;
+            
+            // Trigger the spin animation
+            StartCoroutine(SpinOutRoutine());
+        }
+    }
+
+    private System.Collections.IEnumerator SpinOutRoutine()
+    {
+        isSpinningOut = true;
+        
+        // Spin the kart visually 360 degrees
+        float spinAmount = 0;
+        while (spinAmount < 360f)
+        {
+            float rotationThisFrame = 720f * Time.deltaTime; // Spins twice per second
+            transform.Rotate(0, rotationThisFrame, 0);
+            spinAmount += rotationThisFrame;
+            yield return null;
+        }
+
+        isSpinningOut = false;
     }
 }
