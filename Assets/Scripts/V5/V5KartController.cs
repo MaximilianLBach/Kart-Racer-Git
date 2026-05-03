@@ -69,6 +69,7 @@ public class V5KartController : NetworkBehaviour
 
     [Header("VR Controls")]
     public XRKnob vrSteeringWheel;
+    public Transform driftStick;
 
     void OnEnable() 
     {
@@ -302,6 +303,17 @@ public class V5KartController : NetworkBehaviour
             if (!IsOwner)
             {
                 steeringWheel.localEulerAngles = new Vector3(0, turnInput * -45f, 0);
+            }
+        }
+
+        if (driftStick != null)
+        {
+            if (!IsOwner)
+            {
+                // We use the exact angles you typed into the XRLever in the Inspector!
+                // isDrifting = True (-32.1 degrees). isDrifting = False (13.7 degrees).
+                float targetStickAngle = isDrifting ? -32.1f : 13.7f;
+                driftStick.localEulerAngles = new Vector3(targetStickAngle, 0, 0);
             }
         }
 
