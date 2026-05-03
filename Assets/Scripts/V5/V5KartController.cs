@@ -119,9 +119,12 @@ public class V5KartController : NetworkBehaviour
         lastPosition = transform.position;
     }
 
-    private void OnDriftStarted(InputAction.CallbackContext context)
+    private void OnDriftStarted(InputAction.CallbackContext context) => StartDrift();
+    private void OnDriftCanceled(InputAction.CallbackContext context) => StopDrift();
+
+    // Make these public so our VR Lever can trigger them from the Inspector!
+    public void StartDrift()
     {
-        // Only the owner can trigger actual drift logic
         if (!IsOwner) return;
 
         if (isCarGrounded && turnInput != 0 && moveInputRaw > 0 && !isDrifting)
@@ -132,7 +135,7 @@ public class V5KartController : NetworkBehaviour
         }
     }
 
-    private void OnDriftCanceled(InputAction.CallbackContext context)
+    public void StopDrift()
     {
         if (!IsOwner) return;
 
