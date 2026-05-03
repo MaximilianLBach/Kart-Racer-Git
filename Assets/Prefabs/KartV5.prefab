@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3093055628
+  GlobalObjectIdHash: 361171878
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -748,6 +748,9 @@ MonoBehaviour:
   meshesToHideLocally:
   - {fileID: 1116819426287397805}
   - {fileID: 3559551596240007639}
+  leftHandRotOffset: {x: 0, y: 0, z: 90}
+  rightHandRotOffset: {x: 0, y: 0, z: -90}
+  bodyPositionOffset: {x: 0, y: -0.2, z: 0}
 --- !u!1 &3682516800647472650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,15 +2342,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6503472651252357510, guid: f43af5c891653b8479bde9320e59e17d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.96201
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6503472651252357510, guid: f43af5c891653b8479bde9320e59e17d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3335999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6503472651252357510, guid: f43af5c891653b8479bde9320e59e17d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1038101
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6503472651252357510, guid: f43af5c891653b8479bde9320e59e17d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2763,15 +2766,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7598929372368796659, guid: 624438fb9caa9304697d04d1c4176fa4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.96201
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7598929372368796659, guid: 624438fb9caa9304697d04d1c4176fa4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3335999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7598929372368796659, guid: 624438fb9caa9304697d04d1c4176fa4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1038101
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7598929372368796659, guid: 624438fb9caa9304697d04d1c4176fa4, type: 3}
       propertyPath: m_LocalRotation.w
