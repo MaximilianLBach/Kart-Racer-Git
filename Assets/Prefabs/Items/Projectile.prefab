@@ -228,3 +228,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShellProjectile
   ShowTopMostFoldoutHeaderGroup: 1
   speed: 30
+  hoverHeight: 0.5
+  shellRadius: 0.5
+  maxBounces: 3
+  trackLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 1

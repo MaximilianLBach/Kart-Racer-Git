@@ -148,9 +148,9 @@ public class V5KartController : NetworkBehaviour
         {
             isDrifting = false;
             
-            if (driftPower > 150f) currentBoost = 40f;
-            else if (driftPower > 100f) currentBoost = 25f;
-            else if (driftPower > 50f) currentBoost = 15f;
+            if (driftPower > 150f) currentBoost = 60f;
+            else if (driftPower > 100f) currentBoost = 50f;
+            else if (driftPower > 50f) currentBoost = 40f;
             
             driftPower = 0f;
         }
@@ -362,7 +362,7 @@ public class V5KartController : NetworkBehaviour
         if (IsOwner)
         {
             // Instantly fill your boost tank (uses your existing drift boost logic!)
-            currentBoost = 50f; 
+            currentBoost = 80f; 
         }
     }
 
@@ -403,14 +403,37 @@ public class V5KartController : NetworkBehaviour
     private System.Collections.IEnumerator SpinOutRoutine()
     {
         isSpinningOut = true;
+
+        // --- Spin Settings ---
+        float totalSpinDegrees = 1080f; // 1080 degrees = exactly 3 full rotations
+        float spinDuration = 1.5f;      // How many seconds the spin lasts overall
         
-        // Spin the kart visually 360 degrees
-        float spinAmount = 0;
-        while (spinAmount < 360f)
+        float elapsedTime = 0f;
+        float spunSoFar = 0f;
+
+        while (elapsedTime < spinDuration)
         {
-            float rotationThisFrame = 720f * Time.deltaTime; // Spins twice per second
-            transform.Rotate(0, rotationThisFrame, 0);
-            spinAmount += rotationThisFrame;
+            elapsedTime += Time.deltaTime;
+            
+            // 1. Calculate our time progress from 0.0 to 1.0 (0% to 100%)
+            float t = elapsedTime / spinDuration;
+
+            // 2. Apply a "Cubic Ease-Out" math curve. 
+            // This equation makes the rotation start incredibly fast, then smoothly decelerate to 0.
+            float easeOutT = 1f - Mathf.Pow(1f - t, 3f);
+
+            // 3. Figure out exactly how many degrees we SHOULD have spun by this exact millisecond
+            float targetSpinSoFar = totalSpinDegrees * easeOutT;
+
+            // 4. Calculate the difference between where we are, and where the curve says we should be
+            float degreesThisFrame = targetSpinSoFar - spunSoFar;
+
+            // 5. Apply the rotation locally so we stay glued to the anti-gravity walls!
+            transform.Rotate(0, degreesThisFrame, 0, Space.Self);
+            
+            // 6. Save our progress for the next frame
+            spunSoFar += degreesThisFrame;
+
             yield return null;
         }
 
