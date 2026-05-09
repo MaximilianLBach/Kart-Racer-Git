@@ -35,6 +35,10 @@ namespace UnityEngine.XR.Content.Interaction
         float m_MinAngle = -90.0f;
 
         [SerializeField]
+        [Tooltip("If enabled, the lever will automatically snap back to OFF when released")]
+        bool m_SnapBackOnRelease = true; // <-- NEW VARIABLE
+
+        [SerializeField]
         [Tooltip("Events to trigger when the lever activates")]
         UnityEvent m_OnLeverActivate = new UnityEvent();
 
@@ -121,7 +125,14 @@ namespace UnityEngine.XR.Content.Interaction
 
         void EndGrab(SelectExitEventArgs args)
         {
-            SetValue(m_Value, true);
+            if (m_SnapBackOnRelease)
+            {
+                SetValue(false, true); 
+            }
+            else
+            {
+                SetValue(m_Value, true); 
+            }
             m_Interactor = null;
         }
 
