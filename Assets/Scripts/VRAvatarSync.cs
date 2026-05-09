@@ -23,6 +23,7 @@ public class VRAvatarSync : NetworkBehaviour
     public Vector3 leftHandRotOffset = new Vector3(0, 0, 90);  // A guess based on standard VR models!
     public Vector3 rightHandRotOffset = new Vector3(0, 0, -90);
     public Vector3 bodyPositionOffset = new Vector3(0, -0.2f, 0);
+    public float remoteHandScale = 2f;
 
     public override void OnNetworkSpawn()
     {
@@ -34,6 +35,13 @@ public class VRAvatarSync : NetworkBehaviour
             {
                 if (mesh != null) mesh.enabled = false;
             }
+        }
+        else
+        {
+            // We are a remote player looking at someone else's avatar!
+            // Let's pump up the size of their hands so we can see them from far away.
+            if (miiLeftHand != null) miiLeftHand.localScale = Vector3.one * remoteHandScale;
+            if (miiRightHand != null) miiRightHand.localScale = Vector3.one * remoteHandScale;
         }
     }
 

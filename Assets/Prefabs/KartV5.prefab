@@ -221,7 +221,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7040340504389850603}
   - component: {fileID: 7693032209541430595}
-  - component: {fileID: 4372605476559588144}
   m_Layer: 0
   m_Name: XR Origin (VR)
   m_TagString: Untagged
@@ -262,20 +261,6 @@ MonoBehaviour:
   m_CameraFloorOffsetObject: {fileID: 9138821743757744008}
   m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
---- !u!114 &4372605476559588144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2227931197601382603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017c5e3933235514c9520e1dace2a4b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager
-  m_ActionAssets:
-  - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &2282190866309285157
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 361171878
+  GlobalObjectIdHash: 3093055628
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -893,7 +878,8 @@ MonoBehaviour:
   - {fileID: 3559551596240007639}
   leftHandRotOffset: {x: 0, y: 0, z: 90}
   rightHandRotOffset: {x: 0, y: 0, z: -90}
-  bodyPositionOffset: {x: 0, y: -0.2, z: 0}
+  bodyPositionOffset: {x: 0, y: -0.4, z: 0.2}
+  remoteHandScale: 1.8
 --- !u!114 &6359640071094233085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2784,9 +2770,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -3208,9 +3194,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
