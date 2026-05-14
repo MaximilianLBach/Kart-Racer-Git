@@ -698,7 +698,7 @@ MonoBehaviour:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
-  alignSpeed: 10
+  alignSpeed: 5
   airAlignSpeed: 1
   isDrifting: 0
   baseDriftTurnSpeed: 60
@@ -1753,7 +1753,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 5000
   field of view: 110
   orthographic: 0
   orthographic size: 5

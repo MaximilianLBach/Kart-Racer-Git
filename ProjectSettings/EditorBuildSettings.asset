@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KartTutorial.unity
     guid: b52e8d9a4bd7a4f48b29ff923eb8cfda
+  - enabled: 1
+    path: Assets/Scenes/SnowMap.unity
+    guid: a3a185c3b4f09da439de7f9e6e46696e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 09160f94654234249ba95feefa0370b7, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8457206a8d839ec4cacb5f1149364852, type: 2}
