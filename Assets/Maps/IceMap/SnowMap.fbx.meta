@@ -7,13 +7,53 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 1314f37ab7d4a874ba6afe6d637c0120, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 7ed9b1dc0d467d04c94f9b837c895920, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: b56c3c880b8ff414aba1dc248f710263, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: cf44d3e62eaaa614880af7979865023f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: 5221ce029942cc04f826585768236690, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: sl_IceCave
     second: {fileID: 2100000, guid: 5ccb8bd1445d01d43889a28a80a52dd8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: sn_jumpSnow01
+    second: {fileID: 2100000, guid: bc864c5d8d28b314096aa924ebd64c2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: sn_snow01
     second: {fileID: 2100000, guid: 861df8e82eb90354aaf07458863cad65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snow05
+    second: {fileID: 2100000, guid: 0de448738dfe7684aa24362a2b8a50b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sn_snowRoof01_Top
+    second: {fileID: 2100000, guid: b71af763fc5596e43a5040a97c871779, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
