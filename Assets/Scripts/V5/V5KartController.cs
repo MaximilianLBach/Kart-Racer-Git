@@ -16,7 +16,7 @@ public class V5KartController : NetworkBehaviour
     private float moveInputRaw;
     private float turnInput;
     private bool isCarGrounded;
-    private Vector3 currentGravityDir = Vector3.down;
+    public Vector3 currentGravityDir = Vector3.down;
     private bool isInAntiGravZone = false;
 
     public float alignSpeed = 10f;
