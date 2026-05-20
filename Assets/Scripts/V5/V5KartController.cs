@@ -108,6 +108,8 @@ public class V5KartController : NetworkBehaviour
             sphereRB.transform.position = transform.position;
             sphereRB.transform.parent = null;
 
+            DontDestroyOnLoad(sphereRB.gameObject);
+
             if (xrOrigin != null) xrOrigin.SetActive(true);
             if (playerAudioListener != null) playerAudioListener.enabled = true;
         }
@@ -122,6 +124,15 @@ public class V5KartController : NetworkBehaviour
         }
 
         lastPosition = transform.position;
+    }
+
+    public override void OnDestroy()
+    {
+        if (IsOwner && sphereRB != null)
+        {
+            Destroy(sphereRB.gameObject);
+        }
+        base.OnDestroy(); // Crucial for Netcode to finish its own cleanup!
     }
 
     private void OnDriftStarted(InputAction.CallbackContext context) => StartDrift();

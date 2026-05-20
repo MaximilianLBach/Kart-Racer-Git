@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5048300185243497678}
   - component: {fileID: 8134703708440972400}
   - component: {fileID: 7011850505068354625}
-  - component: {fileID: 2209010255669357175}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -107,20 +106,3 @@ MonoBehaviour:
     PacketDelayMS: 0
     PacketJitterMS: 0
     PacketDropRate: 0
---- !u!114 &2209010255669357175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130513807897292912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3408a3526e8aabc499c92d4c7c087f3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnLogic
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
