@@ -35,7 +35,7 @@ public class ItemBox : NetworkBehaviour
         if (inventory != null)
         {
             // Give them a random item (excluding 'None' at index 0)
-            ItemType randomItem = (ItemType)Random.Range(1, 4); 
+            ItemType randomItem = (ItemType)Random.Range(1, 5); 
             
             bool pickedUp = inventory.GiveItem(randomItem);
 

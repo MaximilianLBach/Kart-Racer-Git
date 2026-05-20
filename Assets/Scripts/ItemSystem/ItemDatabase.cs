@@ -5,7 +5,8 @@ public enum ItemType
     None,
     Boost,       // Speed boost
     Projectile,     // Forward projectile
-    Invincibility            // Invincibility
+    Invincibility,
+    Hammer
 }
 
 public class ItemDatabase

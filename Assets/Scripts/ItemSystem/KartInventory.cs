@@ -6,6 +6,9 @@ public class KartInventory : NetworkBehaviour
 {
     [Header("Inventory State")]
     public int maxItems = 3;
+    [Header("Melee Weapons")]
+    public GameObject hammerVisual; 
+    public NetworkVariable<bool> isHammerActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     
     // CHANGE 1: Store as 'int' instead of 'ItemType' to bypass the IEquatable error
     public NetworkList<int> storedItems;
@@ -83,6 +86,29 @@ public class KartInventory : NetworkBehaviour
             case ItemType.Invincibility:
                 kartController.ActivateInvincibilityClientRpc();
                 break;
+
+            case ItemType.Hammer:
+            // 1. Turn it on
+            isHammerActive.Value = true;
+            
+            // 2. Tell the server to turn it off automatically after 30 seconds
+            Invoke(nameof(DeactivateHammer), 30f);
+            break;
         }
     }
+
+    public override void OnNetworkSpawn()
+    {
+        // Whenever the server changes this boolean, turn the visual model on/off locally!
+        isHammerActive.OnValueChanged += (oldVal, newVal) => hammerVisual.SetActive(newVal);
+        
+        // Ensure it starts in the correct state
+        hammerVisual.SetActive(isHammerActive.Value);
+    }
+
+    private void DeactivateHammer()
+    {
+        isHammerActive.Value = false;
+    }
+
 }
