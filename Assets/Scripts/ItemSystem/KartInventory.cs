@@ -92,7 +92,7 @@ public class KartInventory : NetworkBehaviour
             isHammerActive.Value = true;
             
             // 2. Tell the server to turn it off automatically after 30 seconds
-            Invoke(nameof(DeactivateHammer), 30f);
+            Invoke(nameof(DeactivateHammer), 10f);
             break;
         }
     }
