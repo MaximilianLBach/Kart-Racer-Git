@@ -98,7 +98,11 @@ public class KartLapTracker : NetworkBehaviour
 
                 if (currentLap.Value > mapTotalLaps)
                 {
-                    Debug.Log($"Player {OwnerClientId} finished the race!");
+                    if (RaceManager.Instance != null)
+                    {
+                        // Tell the server this specific kart is done!
+                        RaceManager.Instance.PlayerCrossedFinishLine(OwnerClientId);
+                    }
                 }
             }
         }

@@ -22,17 +22,24 @@ public class KartSpawner : NetworkBehaviour
     
         // 1. Subscribe to future players
         NetworkManager.Singleton.OnClientConnectedCallback += SpawnPlayer;
-    
+
+
         // 2. FORCE-SPAWN THE HOST IMMEDIATELY
         // We add a tiny delay to ensure the scene is fully initialized
-        SpawnHostDelay();
+        SpawnExistingPlayersDelay();
     }
 
-private async void SpawnHostDelay()
-{
-    await System.Threading.Tasks.Task.Delay(500);
-    SpawnPlayer(NetworkManager.Singleton.LocalClientId);
-}
+private async void SpawnExistingPlayersDelay()
+    {
+        // Give the physics engine and scene 500ms to fully wake up
+        await System.Threading.Tasks.Task.Delay(500);
+
+        // Loop through everyone (Host is included in this list automatically)
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            SpawnPlayer(clientId);
+        }
+    }
 
     private void SpawnPlayer(ulong clientId)
     {

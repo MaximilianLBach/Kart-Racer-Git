@@ -75,6 +75,8 @@ public class V5KartController : NetworkBehaviour
     public NetworkVariable<bool> isInvincible = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private bool isSpinningOut = false;
 
+    [HideInInspector] public bool hasFinishedRace = false;
+
     void OnEnable() 
     {
         moveAction.action.Enable();
@@ -121,6 +123,17 @@ public class V5KartController : NetworkBehaviour
 
             if (xrOrigin != null) xrOrigin.SetActive(false);
             if (playerAudioListener != null) playerAudioListener.enabled = false;
+        }
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "PodiumScene")
+        {
+            hasFinishedRace = true; // Locks your Update loop inputs just in case
+            
+            if (sphereRB != null) sphereRB.isKinematic = true; // Kills gravity and forces
+            
+            // Turn off the physical hitboxes completely
+            if (kartSphereCollider != null) kartSphereCollider.enabled = false;
+            if (kartVisualCollider != null) kartVisualCollider.enabled = false;
         }
 
         lastPosition = transform.position;
@@ -287,6 +300,23 @@ public class V5KartController : NetworkBehaviour
     {
         // Only the local player calculates physical forces
         if (!IsOwner) return;
+
+        if ((RaceManager.Instance != null && RaceManager.Instance.CurrentState.Value != RaceManager.RaceState.Racing) || hasFinishedRace)
+        {
+            moveInput = 0f;
+            turnInput = 0f;
+            
+            sphereRB.linearVelocity = Vector3.zero;
+
+            if (!sphereRB.isKinematic) sphereRB.isKinematic = true;
+
+            return; 
+        }
+
+        if (sphereRB.isKinematic)
+        {
+            sphereRB.isKinematic = false;
+        }
 
         if(isCarGrounded)
         {
