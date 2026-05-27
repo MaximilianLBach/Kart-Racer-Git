@@ -8,22 +8,71 @@ using Unity.Services.Lobbies.Models;
 using Unity.Networking.Transport.Relay;
 using System.Collections.Generic;
 
+[System.Serializable]
+public struct MapInfo
+{
+    public string displayName;   // What the player sees on the UI (e.g., "Snow Peak")
+    public string sceneName;     // The exact name of the Unity Scene file (e.g., "SnowMap")
+}
 public class LobbyManager : MonoBehaviour
 {
     [Header("Settings")]
     public int maxPlayers = 4;
-    public string raceTrackSceneName = "RaceTrack"; 
+
 
     [Header("UI Feedback")]
     public TMPro.TextMeshProUGUI statusText;
+
+    [Header("Map Selection")]
+    public MapInfo[] availableMaps;
+    public TMPro.TextMeshProUGUI mapDisplayUI; // The text on the computer screen
+    private int currentMapIndex = 0;
+    private string selectedSceneName = ""; // The hidden scene name we will load
 
     private Lobby currentLobby;
     private float heartbeatTimer;
     private bool isLobbyHost;
 
+
     private void Start()
     {
         NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
+
+        UpdateMapUI();
+    }
+
+    public void NextMap()
+    {
+        if (availableMaps.Length == 0) return;
+        
+        currentMapIndex++;
+        if (currentMapIndex >= availableMaps.Length) currentMapIndex = 0; // Wrap around to the start
+        
+        UpdateMapUI();
+    }
+
+    public void PreviousMap()
+    {
+        if (availableMaps.Length == 0) return;
+        
+        currentMapIndex--;
+        if (currentMapIndex < 0) currentMapIndex = availableMaps.Length - 1; // Wrap around to the end
+        
+        UpdateMapUI();
+    }
+
+    private void UpdateMapUI()
+    {
+        if (availableMaps.Length == 0) return;
+
+        // Update the visual text on the monitor
+        if (mapDisplayUI != null)
+        {
+            mapDisplayUI.text = $"Map: {availableMaps[currentMapIndex].displayName}";
+        }
+
+        // Lock in the actual scene name for the server to use
+        selectedSceneName = availableMaps[currentMapIndex].sceneName;
     }
 
     private void Update()
@@ -68,7 +117,7 @@ public class LobbyManager : MonoBehaviour
             if (statusText) statusText.text = "Loading Track...";
             NetworkManager.Singleton.StartHost();
             await System.Threading.Tasks.Task.Delay(1000); // Buffer for Relay port binding
-            NetworkManager.Singleton.SceneManager.LoadScene(raceTrackSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+            NetworkManager.Singleton.SceneManager.LoadScene(selectedSceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
         catch (System.Exception e)
         {
