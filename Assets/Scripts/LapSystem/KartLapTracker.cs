@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.InputSystem;
 
 public class KartLapTracker : NetworkBehaviour
 {
@@ -20,6 +21,9 @@ public class KartLapTracker : NetworkBehaviour
     
     // NEW: We save the floor direction of the checkpoint!
     private Vector3 respawnGravityDir = Vector3.down; 
+
+    [Header("Manual Respawn")]
+    public InputActionReference respawnAction;
 
     public override void OnNetworkSpawn()
     {
@@ -116,5 +120,33 @@ public class KartLapTracker : NetworkBehaviour
                 lastHitCheckpointIndex.Value = indexHit;
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        if (respawnAction != null)
+        {
+            respawnAction.action.Enable();
+            // Listen for the exact moment the button is pressed down
+            respawnAction.action.performed += TriggerManualRespawn; 
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (respawnAction != null)
+        {
+            respawnAction.action.Disable();
+            respawnAction.action.performed -= TriggerManualRespawn;
+        }
+    }
+
+    // The method that runs when the button is clicked
+    private void TriggerManualRespawn(InputAction.CallbackContext context)
+    {
+        // Safety check: Only let the actual driver of this specific kart force a respawn!
+        if (!IsOwner) return;
+
+        RespawnKart();
     }
 }

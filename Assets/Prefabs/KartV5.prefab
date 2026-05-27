@@ -1129,6 +1129,7 @@ MonoBehaviour:
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: -1
   kartController: {fileID: 5708199809483465609}
+  respawnAction: {fileID: 9119566503541713536, guid: 5a69fdda71e40e4449fbf862c934949f, type: 3}
 --- !u!54 &242535148953056926
 Rigidbody:
   m_ObjectHideFlags: 0
