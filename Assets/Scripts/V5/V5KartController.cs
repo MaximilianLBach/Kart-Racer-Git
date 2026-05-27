@@ -3,6 +3,16 @@ using UnityEngine.InputSystem;
 using Unity.Netcode;
 using UnityEngine.XR.Content.Interaction;
 
+[System.Serializable]
+public struct CharacterSkin
+{
+    public string inspectorName; // Just a label to keep you organized in Unity
+    public Material bodyMaterial;
+    public Material hatMaterial;
+    public Material handMaterial;
+    public Material kartMaterial;
+}
+
 public class V5KartController : NetworkBehaviour
 {
     // --- NETWORK VARIABLES FOR VISUAL SYNC ---
@@ -75,6 +85,20 @@ public class V5KartController : NetworkBehaviour
     public NetworkVariable<bool> isInvincible = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     private bool isSpinningOut = false;
 
+    [Header("Cosmetics")]
+    public CharacterSkin[] availableSkins; 
+    
+    [Header("Character Meshes")]
+    public MeshRenderer bodyMeshRenderer; 
+    public MeshRenderer headMeshRenderer; 
+    public MeshRenderer hatMeshRenderer; 
+    public SkinnedMeshRenderer leftHandRenderer;
+    public SkinnedMeshRenderer rightHandRenderer;
+    public MeshRenderer kartBodyRenderer;
+
+    // The synchronized integer stays exactly the same!
+    public NetworkVariable<int> skinIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
     [HideInInspector] public bool hasFinishedRace = false;
 
     void OnEnable() 
@@ -137,6 +161,72 @@ public class V5KartController : NetworkBehaviour
         }
 
         lastPosition = transform.position;
+
+        // 1. Subscribe to the NetworkVariable. If the server changes this number, run our function!
+        skinIndex.OnValueChanged += OnSkinChanged;
+
+        // 2. Instantly apply the skin for late-joiners who missed the original change event
+        ApplySkinMaterial(skinIndex.Value);
+
+        // 3. If THIS kart belongs to me, read my hard drive and tell the Server what I want to look like
+        if (IsOwner)
+        {
+            int mySavedSkin = PlayerPrefs.GetInt("SelectedCharacter", 0);
+            SubmitSkinRequestServerRpc(mySavedSkin);
+        }
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        skinIndex.OnValueChanged -= OnSkinChanged;
+    }
+
+    // The callback that triggers whenever the NetworkVariable changes
+    private void OnSkinChanged(int previousValue, int newValue)
+    {
+        ApplySkinMaterial(newValue);
+    }
+
+    // The actual code that physically swaps the material
+    private void ApplySkinMaterial(int index)
+    {
+        if (availableSkins == null || availableSkins.Length == 0) return;
+
+        int safeIndex = Mathf.Clamp(index, 0, availableSkins.Length - 1);
+        CharacterSkin selectedOutfit = availableSkins[safeIndex];
+
+        // 1. Apply the basic Mii Outfit
+        if (bodyMeshRenderer != null) bodyMeshRenderer.material = selectedOutfit.bodyMaterial;
+        if (headMeshRenderer != null) headMeshRenderer.material = selectedOutfit.bodyMaterial;
+        if (hatMeshRenderer != null) hatMeshRenderer.material = selectedOutfit.hatMaterial;
+
+        // 2. Apply the Hand Materials (SkinnedMeshRenderers)
+        if (leftHandRenderer != null) leftHandRenderer.material = selectedOutfit.handMaterial;
+        if (rightHandRenderer != null) rightHandRenderer.material = selectedOutfit.handMaterial;
+
+        // 3. Apply the Kart Material safely without breaking the metal cage!
+        if (kartBodyRenderer != null)
+        {
+            // Grab a copy of the current materials array
+            Material[] currentKartMaterials = kartBodyRenderer.materials;
+            
+            // Check to make sure the array actually has a second slot (Index 1)
+            if (currentKartMaterials.Length > 1)
+            {
+                // Swap out ONLY the painted kart body material
+                currentKartMaterials[0] = selectedOutfit.kartMaterial;
+                
+                // Give the updated array back to the renderer
+                kartBodyRenderer.materials = currentKartMaterials;
+            }
+        }
+    }
+
+    [ServerRpc]
+    private void SubmitSkinRequestServerRpc(int requestedIndex)
+    {
+        // The server receives the request and officially updates the global variable
+        skinIndex.Value = requestedIndex;
     }
 
     public override void OnDestroy()
