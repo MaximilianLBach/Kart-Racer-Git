@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Kart Racer Git.slnx",
+    "dotnet.defaultSolution": "Kart-Racer-Git.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }

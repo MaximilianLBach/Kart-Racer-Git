@@ -1,40 +1,28 @@
 using UnityEngine;
 using Unity.Netcode;
-using System.Collections.Generic;
 
-// 1. MUST BE NetworkBehaviour
 public class KartSpawner : NetworkBehaviour 
 {
-    private List<Transform> spawnPoints = new List<Transform>();
-    private int nextSpawnIndex = 0;
+    [Header("Podium Spawn Points (0 = 1st, 1 = 2nd, 2 = 3rd)")]
+    // We replaced the hidden List with a visible Array!
+    [SerializeField] private Transform[] orderedSpawnPoints; 
 
     [SerializeField] private NetworkObject kartPrefab;
 
-    // 2. This will now fire automatically when the scene is loaded by NetworkManager
+    private int nextSpawnIndex = 0;
+
     public override void OnNetworkSpawn()
     {
         if (!IsServer) return;
-    
-        GameObject[] points = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        foreach (GameObject go in points) spawnPoints.Add(go.transform);
         
-        Debug.Log($"KartSpawner: Found {spawnPoints.Count} spawn points.");
-    
-        // 1. Subscribe to future players
         NetworkManager.Singleton.OnClientConnectedCallback += SpawnPlayer;
-
-
-        // 2. FORCE-SPAWN THE HOST IMMEDIATELY
-        // We add a tiny delay to ensure the scene is fully initialized
         SpawnExistingPlayersDelay();
     }
 
-private async void SpawnExistingPlayersDelay()
+    private async void SpawnExistingPlayersDelay()
     {
-        // Give the physics engine and scene 500ms to fully wake up
         await System.Threading.Tasks.Task.Delay(500);
 
-        // Loop through everyone (Host is included in this list automatically)
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             SpawnPlayer(clientId);
@@ -43,16 +31,40 @@ private async void SpawnExistingPlayersDelay()
 
     private void SpawnPlayer(ulong clientId)
     {
-        Debug.Log($"SpawnPlayer triggered for ClientID: {clientId}");
+        if (orderedSpawnPoints == null || orderedSpawnPoints.Length == 0) return;
 
-        if (spawnPoints.Count == 0) return;
+        int placement = 0; 
 
-        Transform spawn = spawnPoints[nextSpawnIndex % spawnPoints.Count];
-        nextSpawnIndex++;
+        // SCENARIO A: We have a leaderboard from a previous race!
+        if (RaceManager.FinalLeaderboard != null && RaceManager.FinalLeaderboard.Count > 0)
+        {
+            if (RaceManager.FinalLeaderboard.Contains(clientId))
+            {
+                // You raced! Here is your earned spot.
+                placement = RaceManager.FinalLeaderboard.IndexOf(clientId);
+            }
+            else
+            {
+                // You just joined the server during the podium, go to the back!
+                placement = orderedSpawnPoints.Length - 1; 
+            }
+        }
+        // SCENARIO B: This is the very first race. No leaderboard exists yet!
+        else
+        {
+            // Just hand out the spots in order: 0, 1, 2, 3...
+            placement = nextSpawnIndex % orderedSpawnPoints.Length;
+        }
 
+        // Safety clamp: Ensure we never ask for an array index that doesn't exist
+        placement = Mathf.Clamp(placement, 0, orderedSpawnPoints.Length - 1);
+        
+        // Always increment the fallback index just in case
+        nextSpawnIndex++; 
+
+        // Spawn them!
+        Transform spawn = orderedSpawnPoints[placement];
         NetworkObject spawnedKart = Instantiate(kartPrefab, spawn.position, spawn.rotation);
         spawnedKart.SpawnWithOwnership(clientId);
-        
-        Debug.Log("Kart spawned successfully.");
     }
 }

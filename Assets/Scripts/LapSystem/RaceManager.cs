@@ -14,6 +14,8 @@ public class RaceManager : NetworkBehaviour
     [Header("Leaderboard")]
     public List<ulong> raceLeaderboard = new List<ulong>();
 
+    public static List<ulong> FinalLeaderboard = new List<ulong>();
+
     public enum RaceState
     {
         WaitingForPlayers,
@@ -81,7 +83,7 @@ public class RaceManager : NetworkBehaviour
         
         // --- NEW CLEANUP CODE ---
         // Find every single kart in the track scene
-        V5KartController[] allKarts = FindObjectsOfType<V5KartController>();
+        V5KartController[] allKarts = FindObjectsByType<V5KartController>(FindObjectsInactive.Exclude);
         
         foreach (V5KartController kart in allKarts)
         {
@@ -95,7 +97,7 @@ public class RaceManager : NetworkBehaviour
         // Give the network a tiny fraction of a second to sync the destruction
         yield return new WaitForSeconds(0.1f);
         // ------------------------
-
+        FinalLeaderboard = new List<ulong>(raceLeaderboard);
         // Now load the scene! The old karts are dead, and the Podium Spawner will build fresh ones.
         NetworkManager.Singleton.SceneManager.LoadScene("PodiumScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
