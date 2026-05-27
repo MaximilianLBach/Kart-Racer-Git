@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using System.Collections;
 
 public class KartSpawner : NetworkBehaviour 
 {
@@ -10,6 +11,7 @@ public class KartSpawner : NetworkBehaviour
     [SerializeField] private NetworkObject kartPrefab;
 
     private int nextSpawnIndex = 0;
+    
 
     public override void OnNetworkSpawn()
     {
@@ -17,6 +19,11 @@ public class KartSpawner : NetworkBehaviour
         
         NetworkManager.Singleton.OnClientConnectedCallback += SpawnPlayer;
         SpawnExistingPlayersDelay();
+
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "PodiumScene")
+        {
+            StartCoroutine(PodiumTimerRoutine());
+        }
     }
 
     private async void SpawnExistingPlayersDelay()
@@ -66,5 +73,62 @@ public class KartSpawner : NetworkBehaviour
         Transform spawn = orderedSpawnPoints[placement];
         NetworkObject spawnedKart = Instantiate(kartPrefab, spawn.position, spawn.rotation);
         spawnedKart.SpawnWithOwnership(clientId);
+    }
+
+    private IEnumerator PodiumTimerRoutine()
+    {
+        // 1. Wait for 30 seconds while players celebrate
+        yield return new WaitForSeconds(30f);
+
+        // 2. Tell all clients to leave the server
+        EndGameAndDisconnectClientRpc();
+
+        // 3. Give the network 0.5 seconds to ensure the RPC actually reaches the clients before we pull the plug
+        yield return new WaitForSeconds(0.5f);
+
+        // 4. Shut down the Server/Host
+        NetworkManager.Singleton.Shutdown();
+
+        if (NetworkManager.Singleton != null)
+        {
+            Destroy(NetworkManager.Singleton.gameObject);
+        }
+        
+        DestroyLeftoverXRManagers();
+
+        // 5. Load the Main Menu locally for the Host
+        // IMPORTANT: Change "MainMenu" to the exact name of your menu scene file!
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu"); 
+    }
+
+    [ClientRpc]
+    private void EndGameAndDisconnectClientRpc()
+    {
+        // The Host ignores this RPC because it handles its own shutdown in the Coroutine above
+        if (IsServer) return;
+
+        // 1. Shut down the Client connection
+        NetworkManager.Singleton.Shutdown();
+
+        if (NetworkManager.Singleton != null)
+        {
+            Destroy(NetworkManager.Singleton.gameObject);
+        }
+
+        DestroyLeftoverXRManagers();
+
+        // 2. Load the Main Menu locally for the Client
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
+    private void DestroyLeftoverXRManagers()
+    {
+        // Hunt down every single XR Interaction Manager in memory, active or inactive
+        UnityEngine.XR.Interaction.Toolkit.XRInteractionManager[] leftoverManagers = FindObjectsByType<UnityEngine.XR.Interaction.Toolkit.XRInteractionManager>(FindObjectsInactive.Include);
+        
+        foreach (var manager in leftoverManagers)
+        {
+            Destroy(manager.gameObject);
+        }
     }
 }
